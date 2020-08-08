@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Level UP Digital:Atomic Tecnologies') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
     @yield('table')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -66,9 +66,18 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link">
-                                <i class="fa fa-cog fa-spin"></i></a></li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa fa-cog fa-spin"></i>  <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/picklist">
+                                        PickList
+                                    </a>
+                                </div>
+                            </li>
+
                         @endguest
                     </ul>
                 </div>

@@ -3,8 +3,8 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">PT Reports
-                   <a class="btn btn-success ml-5" href="javascript:void(0)" id="createNewItem"> Create New Item</a>
+                 <h4 class="card-title">PickList
+                   <a class="btn btn-success ml-5" href="/picklist/create" id="createNewItem"> Create New List</a>
                  </h4>
              </div>
           </div>
@@ -14,7 +14,7 @@
                      <tr>
                          <th width="5%">No</th>
                          <th>Name</th>
-                         <th>Descriptions</th>
+                         <th>Description</th>
                          <th width="15%">Action</th>
                      </tr>
                  </thead>
@@ -76,7 +76,7 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('picklist.loadData') }}",
+        ajax: "{{ route('loaddata.get') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},

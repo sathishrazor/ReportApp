@@ -31,6 +31,7 @@ class PickListController extends Controller
 
     public function loadData(Request $request)
     {
+
         if ($request->ajax()) {
             $data = PickList::latest()->get();
             return Datatables::of($data)
@@ -45,14 +46,15 @@ class PickListController extends Controller
                     ->make(true);
         }
 
-        return response()->view('errors.404',null,404);
+        return view('picklist.index');
     }
 
 
 
     public function Details($req)
     {
-
+        $pklist = PickList::find($req);
+        dd($pklist);
         return view('picklist.details');
     }
 
@@ -65,7 +67,19 @@ class PickListController extends Controller
 
     public function create_confirm(Request $request)
     {
-        return  redirect()->action('${App\Http\Controllers\HomeController@index}');
+
+      $pklist = new PickList();
+      $pklist->name =  $request->name;
+      $pklist->description =  $request->name;
+
+        $pklist->save();
+      foreach($request->Options as $option)
+      {
+        $pklist->options()->create($option);
+      }
+
+        $pklist->push();
+        return  redirect()->action('PickListController@index');
     }
 
     public function edit($id)
