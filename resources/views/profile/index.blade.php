@@ -1,7 +1,5 @@
 @extends('layouts.datatable')
 @section('content')
-
-
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
@@ -81,7 +79,7 @@
         ajax: "{{ route('Profile.index') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'name', name: 'name'},
+            {data: 'username', name: 'username'},
             {data: 'description', name: 'description'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
