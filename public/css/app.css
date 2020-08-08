@@ -10904,3 +10904,36 @@ a.text-dark:focus {
   }
 }
 
+.tile-card {
+  margin: 5px;
+  min-width: 200px;
+  height: 100px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  padding: 10px;
+  color: #283593;
+  flex-direction: column;
+}
+
+.tile-card p {
+  text-align: center;
+}
+
+.tile-card i {
+  font-size: 32px;
+  text-align: center;
+}
+
+.tile-card:hover {
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12);
+}
+
+.tile-card:hover i {
+  font-size: 36px;
+  transition: all 0.3s;
+}
+
+.tile-content {
+  margin: auto;
+}
+
