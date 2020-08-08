@@ -20,4 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/picklist', 'PickListController@index');
+Route::post('/picklist/create', 'PickListController@create');
+Route::get('/picklist/create', 'PickListController@create');
+Route::post('/picklist/edit/{id}', 'PickListController@edit');
+Route::get('/picklist/edit/{id}', 'PickListController@edit');
+Route::post('/picklist/dekete/{id}', 'PickListController@delete');
+Route::get('/picklist/delete/{id}', 'PickListController@delete');
+
+
+Route::resource('loadData', 'PicklistController@loadData');
 Route::resource('Profile','ProfileController');
