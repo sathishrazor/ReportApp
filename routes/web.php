@@ -34,7 +34,6 @@ Route::post('/picklist/edit/{id}', 'PickListController@edit');
 Route::get('/picklist/edit/{id}', 'PickListController@edit');
 Route::post('/picklist/delete/{id}', 'PickListController@delete');
 Route::get('/picklist/delete/{id}', 'PickListController@delete');
-Route::get('loaddata','PickListController@loadData')->name("loaddata.get");
 Route::get('/picklist/get/{id}', function ($id) {
     return PickList::findOrFail($id)->options;
 });
@@ -51,3 +50,17 @@ Route::resource('Profile','ProfileController');
 |--------------------------------------------------------------------------
 */
 Route::resource('rtreport', 'RTReportController');
+Route::resource('clients', 'ClientsController');
+Route::resource('projects', 'ProjectsController');
+Route::resource('owners', 'OwnersController');
+Route::resource('technicians', 'TechniciansController');
+/*
+|--------------------------------------------------------------------------
+| Datatable Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/datatable/owners/index','OwnersController@loadData')->name("owners.get");
+Route::get('/datatable/clients/index','ClientsController@loadData')->name("clients.get");
+Route::get('/datatable/projects/index','ProjectsController@loadData')->name("projects.get");
+Route::get('/datatable/technicians/index','TechniciansController@loadData')->name("technicians.get");
+Route::get('/datatable/picklist/index','PickListController@loadData')->name("picklist.get");

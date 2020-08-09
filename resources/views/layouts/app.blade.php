@@ -75,6 +75,18 @@
                                     <a class="dropdown-item" href="/picklist">
                                         PickList
                                     </a>
+                                    <a class="dropdown-item" href="/owners">
+                                        Owners
+                                    </a>
+                                    <a class="dropdown-item" href="/clients">
+                                        Clients
+                                    </a>
+                                    <a class="dropdown-item" href="/technicians">
+                                        Technicians
+                                    </a>
+                                    <a class="dropdown-item" href="/projects">
+                                        Projects
+                                    </a>
                                 </div>
                             </li>
 

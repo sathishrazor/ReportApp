@@ -4,12 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Owner;
 use Illuminate\Http\Request;
-
+use Yajra\Datatables\Datatables;
 class OwnersController extends Controller
 {
     public function index()
     {
         return View("owners.index");
+    }
+
+    public function loadData(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data = Owner::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="/owners/'.$row->id.'/edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        //dd($request);
+        abort(404);
     }
 
     public function create()
@@ -20,37 +38,35 @@ class OwnersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'owner_name' => 'required',
-
+            'name' => 'required',
+            'entity_id' => 'required',
+            'address' => 'required'
         ]);
-        $report = Owner::create($request);
-        $report->save();
-        foreach ($request->interpretations as $int) {
-            $report->interpretations()->create($int);
-        }
 
-        $report->push();
+        $Owner = Owner::create( $request->all());
+        $Owner->save();
+
         return  redirect()->action('OwnersController@index');
     }
 
     public function show($id)
     {
-        return View("owner.show");
+        return View("owners.show");
     }
 
     public function edit($id)
     {
-        return View("owner.edit");
+        return View("owners.edit");
     }
 
     public function update($id)
     {
-        return View("owner.index");
+        return View("owners.index");
     }
 
     public function destroy($id)
     {
-        return View("owner.index");
+        return View("owners.index");
     }
 
 }
