@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Option;
 use Yajra\Datatables\Datatables;
 use App\PickList;
 use Facade\FlareClient\Http\Exceptions\NotFound;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PickListController extends Controller
 {
     //
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -35,20 +36,41 @@ class PickListController extends Controller
         if ($request->ajax()) {
             $data = PickList::latest()->get();
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
 
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         return view('picklist.index');
     }
 
+
+    public function search(Request $req)
+    {
+        $id = $req->id;
+        $q = $req->q;
+
+        if ($q == '') {
+            $pklist = Option::orderby('text', 'asc')->select('text', 'value', 'pick_list_id')
+                ->where([
+                    ['pick_list_id', '=', $id]
+                ])->limit(5)->get();
+        } else {
+            $pklist = Option::orderby('text', 'asc')->select('text', 'value', 'pick_list_id')
+                ->where([
+                    ['text', 'like', '%' . $q . '%'],
+                    ['pick_list_id', '=', $id],
+
+                ])->limit(5)->get();
+        }
+        return response()->json($pklist);
+    }
 
 
     public function Details($req)
@@ -68,15 +90,14 @@ class PickListController extends Controller
     public function create_confirm(Request $request)
     {
 
-      $pklist = new PickList();
-      $pklist->name =  $request->name;
-      $pklist->description =  $request->name;
+        $pklist = new PickList();
+        $pklist->name =  $request->name;
+        $pklist->description =  $request->name;
 
         $pklist->save();
-      foreach($request->Options as $option)
-      {
-        $pklist->options()->create($option);
-      }
+        foreach ($request->Options as $option) {
+            $pklist->options()->create($option);
+        }
 
         $pklist->push();
         return  redirect()->action('PickListController@index');
@@ -101,6 +122,4 @@ class PickListController extends Controller
     {
         return  redirect()->action('${App\Http\Controllers\HomeController@index}');
     }
-
-
 }

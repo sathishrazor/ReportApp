@@ -17,7 +17,7 @@
                         <p class="tile-content">Visual Testing Examination Report</p>
                     </a>
 
-                    <a href="#" class="col-md-2 tile-card d-flex">
+                    <a href="/rtreport" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-eercast" aria-hidden="true"></i>
                         <p class="tile-content">Radiographic Test Report</p>
                     </a>

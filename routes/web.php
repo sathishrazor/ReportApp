@@ -1,5 +1,6 @@
 <?php
 
+use App\PickList;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,11 +35,19 @@ Route::get('/picklist/edit/{id}', 'PickListController@edit');
 Route::post('/picklist/delete/{id}', 'PickListController@delete');
 Route::get('/picklist/delete/{id}', 'PickListController@delete');
 Route::get('loaddata','PickListController@loadData')->name("loaddata.get");
+Route::get('/picklist/get/{id}', function ($id) {
+    return PickList::findOrFail($id)->options;
+});
+Route::post('/picklist/search',"PickListController@search")->name("PickList.search");
 /*
 |--------------------------------------------------------------------------
 | Profile Routes
 |--------------------------------------------------------------------------
 */
-
-
 Route::resource('Profile','ProfileController');
+/*
+|--------------------------------------------------------------------------
+| Profile Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('rtreport', 'RTReportController');
