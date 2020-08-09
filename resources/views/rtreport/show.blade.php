@@ -19,10 +19,30 @@
         td {
             border: 1px solid black;
             border-collapse: collapse;
-            padding: 5px
+            padding: 5px;
+            font-size:small;
         }
         body{
             margin: 20px;
+        }
+        .appendix-table{
+            font-size: smaller
+        }
+        .appendix-table td, .appendix-table  th {
+            padding:2px;
+        }
+        .txt-right
+        {
+            text-align: right
+        }
+
+        .txt-center{
+            text-align: center
+        }
+
+        .txt-left
+        {
+            text-align: left
         }
     </style>
 </head>
@@ -61,66 +81,66 @@
         </tr>
         <tr>
             <td>Client Name</td>
-        <td>{{}}</td>
+            <td>{{$record->client_name}}</td>
             <td>Client Address</td>
-            <td>2</td>
+            <td>{{$record->client_address}}</td>
         </tr>
         <tr>
             <td>Project Name</td>
-            <td>1</td>
+            <td>{{$record->project_name}}</td>
             <td>Project Address</td>
-            <td>2</td>
+            <td>{{$record->project_address}}</td>
         </tr>
         <tr>
             <td>Requested By</td>
-            <td>1</td>
+            <td>{{$record->requested_by}}</td>
             <td>Request No</td>
-            <td>2</td>
+            <td>{{$record->requested_no}}</td>
         </tr>
         <tr>
             <td>PO. No.</td>
-            <td>1</td>
+        <td>{{$record->po_tranno}}</td>
             <td>W.O./ Job No.</td>
-            <td>2</td>
+        <td>${{$record->wo_tranno}}</td>
         </tr>
     </table>
     <p><b>System Details</b></p>
     <table>
         <tr>
             <td>Procedure No.</td>
-            <td>1</td>
+        <td>{{$record->procedure_no}}</td>
             <td>Reference Code</td>
-            <td>2</td>
+            <td>{{$record->reference_code}}</td>
         </tr>
         <tr>
             <td>Acceptance Criteria</td>
-            <td>1</td>
+        <td>{{$record->acceptance_criteria}}</td>
             <td>Project Specification</td>
-            <td>2</td>
+        <td>{{$record->project_spec}}</td>
         </tr>
         <tr>
             <td>Material</td>
-            <td>1</td>
+            <td>{{$record->material}}</td>
             <td>Grade</td>
-            <td>2</td>
+            <td>{{$record->grade}}</td>
         </tr>
         <tr>
             <td>Surface Condition</td>
-            <td>1</td>
+            <td>{{$record->surface_condition}}</td>
             <td>Surface Temperature</td>
-            <td>2</td>
+            <td>{{$record->surface_temperature}}</td>
         </tr>
         <tr>
             <td>Drawing No</td>
-            <td>1</td>
+        <td>{{$record->drawing_no}}</td>
             <td>Line No.</td>
-            <td>2</td>
+            <td>{{$record->line_no}}</td>
         </tr>
         <tr>
             <td>Weld Process</td>
-            <td>1</td>
+        <td>{{$record->weld_process}}</td>
             <td>Weld Reinforcement.</td>
-            <td>2</td>
+            <td>{{$record->weld_reinforcement}}</td>
         </tr>
     </table>
 
@@ -128,45 +148,45 @@
     <table>
         <tr>
             <td>XRay Voltage/Source</td>
-            <td>1</td>
+            <td>{{$record->xray_volt_src}}</td>
             <td>Source/Focal Spot Size</td>
-            <td>1</td>
+            <td>{{$record->src_spot_size}}</td>
             <td>Flim Manufacturer</td>
-            <td>1</td>
+            <td>{{$record->flim_manufacturer}}</td>
             <td>Flim Type</td>
-            <td>1</td>
+            <td>{{$record->flim_type}}</td>
         </tr>
 
         <tr>
             <td>Flims in Cassette</td>
-            <td>1</td>
+            <td>{{$record->flim_in_cassette}}</td>
             <td>Technique</td>
-            <td>1</td>
+            <td>{{$record->technique}}</td>
             <td>SOD</td>
-            <td>1</td>
+            <td>{{$record->sod}}</td>
             <td>OFD</td>
-            <td>1</td>
+            <td>{{$record->ofd}}</td>
         </tr>
 
         <tr>
             <td>IQI</td>
-            <td>1</td>
+            <td>{{$record->iqi}}</td>
             <td>Sensitivity</td>
-            <td>1</td>
+            <td>{{$record->sensitivity}}</td>
             <td>Ug</td>
-            <td>1</td>
+            <td>{{$record->ug}}</td>
             <td>Lead Screen Thickness</td>
-            <td>1</td>
+            <td>{{$record->lead_scr_thickness}}</td>
         </tr>
         <tr>
             <td>Configuration</td>
-            <td>1</td>
+            <td>{{$record->configuration}}</td>
             <td>Welder ID</td>
-            <td>1</td>
+        <td>{{$record->welder_id}}</td>
             <td>Technician 1</td>
-            <td>1</td>
+            <td>{{$record->technician_1}}</td>
             <td>Technician 2</td>
-            <td>1</td>
+            <td>{{$record->technician_2}}</td>
         </tr>
 
     </table>
@@ -185,7 +205,6 @@
                 <th rowspan="2">Density</th>
                 <th colspan="2">Interpretation</th>
                 <th rowspan="2">Result</th>
-                <th rowspan="2">Action</th>
             </tr>
             <tr>
                 <th>Parent</th>
@@ -198,27 +217,44 @@
         </thead>
         <tbody>
 
+            @foreach ($record->interpretations as $item)
+             <tr>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$item->joint_no}}</td>
+                <td>{{$item->size}}</td>
+                <td>{{$item->parent}}</td>
+                <td>{{$item->weld}}</td>
+                <td>{{$item->section}}</td>
+                <td>{{$item->wire_req}}</td>
+                <td>{{$item->wire_vis}}</td>
+                <td>{{$item->density}}</td>
+                <td>{{$item->discontinuity}}</td>
+                <td>{{$item->size}}</td>
+                <td>{{$item->result}}</td>
+            </tr>
+            @endforeach
+
             <tr>
-                <td colspan="10">
+                <td class="txt-right" colspan="11">
                     Flim Size
                 </td>
                 <td>
-                    12345
+
                 </td>
             </tr>
 
             <tr>
-                <td colspan="10">
+                <td class="txt-right" colspan="11">
                     Total Films
                 </td>
                 <td>
-                    12
+
                 </td>
             </tr>
 
             <tr>
                 <td>Remarks</td>
-                <td colspan="10"></td>
+                <td colspan="11"></td>
             </tr>
         </tbody>
     </table>
@@ -291,7 +327,9 @@
                 <td>Carbon Steel</td>
             </tr>
         </table>
-
+<script>
+    print();
+    </script>
 </body>
 
 </html>
