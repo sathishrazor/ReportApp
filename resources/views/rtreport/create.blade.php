@@ -38,7 +38,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Client Name</label>
-                        <input name="client_name" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="client_name" dropdown="4" type="text" class="form-control form-control-sm autocomplete" placeholder="">
                         @error('client_name')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -46,10 +46,11 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Client Address</label>
-                        <input name="client_address" type="text" class="form-control form-control-sm" placeholder="">
+                        <select name="client_address" type="text" class="form-control form-control-sm select" dropdown="5"></select>
                         @error('client_address')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
+                        <small class="form-text text-muted">intellisense</small>
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">

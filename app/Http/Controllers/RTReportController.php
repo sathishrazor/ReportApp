@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RTReport;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class RTReportController extends Controller
 {
@@ -14,6 +15,25 @@ class RTReportController extends Controller
     {
         return View("rtreport.index");
     }
+
+    public function loadData(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data = RTReport::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="/rtreport/'.$row->id.'/edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        //dd($request);
+        abort(404);
+    }
+
 
     public function create()
     {
@@ -32,7 +52,8 @@ class RTReportController extends Controller
             'requested_by' => 'required',
             'request_no' => 'required',
         ]);
-        $report = RTReport::create($request);
+        $data =$request->all();
+        $report = RTReport::create($data);
         $report->save();
         foreach ($request->interpretations as $int) {
             $report->interpretations()->create($int);
@@ -44,7 +65,9 @@ class RTReportController extends Controller
 
     public function show($id)
     {
-        return View("rtreport.show");
+        $record = RTReport::findOrFail($id);
+
+        return View("rtreport.show",["record"=>$record]);
     }
 
     public function edit($id)

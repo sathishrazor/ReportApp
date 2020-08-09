@@ -59,6 +59,7 @@ Route::resource('technicians', 'TechniciansController');
 | Datatable Routes
 |--------------------------------------------------------------------------
 */
+Route::get('/datatable/rtreport/index','RTReportController@loadData')->name("rtreport.get");
 Route::get('/datatable/owners/index','OwnersController@loadData')->name("owners.get");
 Route::get('/datatable/clients/index','ClientsController@loadData')->name("clients.get");
 Route::get('/datatable/projects/index','ProjectsController@loadData')->name("projects.get");

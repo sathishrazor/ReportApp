@@ -1,4 +1,4 @@
-@extends('layouts.datatable')
+@extends('layouts.app')
 @section('content')
         <div class="card">
           <div class="card-header">
@@ -14,7 +14,10 @@
                      <tr>
                          <th width="5%">No</th>
                          <th>Name</th>
-                         <th>Client</th>
+                         <th>email</th>
+                         <th>phone</th>
+                         <th>created_at</th>
+                         <th>created_by</th>
                          <th width="15%">Action</th>
                      </tr>
                  </thead>
@@ -51,7 +54,10 @@
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
-            {data: 'description', name: 'description'},
+            {data: 'email', name: 'email'},
+            {data: 'phone', name: 'phone'},
+            {data: 'created_at', name: 'created_at'},
+            {data: 'created_by', name: 'created_by'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });

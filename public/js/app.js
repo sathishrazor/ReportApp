@@ -37266,6 +37266,10 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+setInterval(function () {
+  $("#time").html(new Date().toGMTString());
+}, 1000);
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
