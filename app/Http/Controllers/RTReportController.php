@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RTReport;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,14 @@ class RTReportController extends Controller
             'requested_by' => 'required',
             'request_no' => 'required',
         ]);
-            dd($request);
+        $report = RTReport::create($request);
+        $report->save();
+        foreach ($request->interpretations as $int) {
+            $report->interpretations()->create($int);
+        }
+
+        $report->push();
+        return  redirect()->action('RTReportController@index');
     }
 
     public function show($id)
