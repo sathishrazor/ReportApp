@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">RT Report
+                 <h4 class="card-title">Projects
                    <a class="btn btn-success ml-5" href="/rtreport/create" id="createNewItem"> New RT Report</a>
                  </h4>
              </div>

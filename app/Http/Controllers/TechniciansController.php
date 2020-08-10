@@ -9,12 +9,12 @@ class TechniciansController extends Controller
 {
     public function index()
     {
-        return View("technician.index");
+        return View("technicians.index");
     }
 
     public function create()
     {
-        return View("technician.create");
+        return View("technicians.create");
     }
 
     public function store(Request $request)
@@ -35,21 +35,21 @@ class TechniciansController extends Controller
 
     public function show($id)
     {
-        return View("technician.show");
+        return View("technicians.show");
     }
 
     public function edit($id)
     {
-        return View("technician.edit");
+        return View("technicians.edit");
     }
 
     public function update($id)
     {
-        return View("technician.index");
+        return View("technicians.index");
     }
 
     public function destroy($id)
     {
-        return View("technician.index");
+        return View("technicians.index");
     }
 }

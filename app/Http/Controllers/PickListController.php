@@ -29,6 +29,15 @@ class PickListController extends Controller
         return view('picklist.index');
     }
 
+    public function get($id)
+    {
+
+        $pick = PickList::where('name', $id)->first();
+        if(!$pick)
+            return response()->json([]);
+        else
+        return response()->json($pick->options);
+    }
 
     public function loadData(Request $request)
     {
@@ -57,19 +66,20 @@ class PickListController extends Controller
         $q = $req->q;
 
         if ($q == '') {
-            $pklist = Option::orderby('text', 'asc')->select('text', 'value', 'pick_list_id')
-                ->where([
-                    ['pick_list_id', '=', $id]
-                ])->limit(5)->get();
+            $pklist = PickList::where('name', $id)->first()->options::orderby('text', 'asc')->limit(5)->get();
         } else {
-            $pklist = Option::orderby('text', 'asc')->select('text', 'value', 'pick_list_id')
+            $pklist =PickList::where('name', $id)->first();
+            if(!$pklist)
+            return response()->json([]);
+            else
+            {
+             $res = $pklist->options()->select('text', 'value')
                 ->where([
-                    ['text', 'like', '%' . $q . '%'],
-                    ['pick_list_id', '=', $id],
-
+                    ['text', 'like', '%' . $q . '%']
                 ])->limit(5)->get();
+                return response()->json($res);
+            }
         }
-        return response()->json($pklist);
     }
 
 

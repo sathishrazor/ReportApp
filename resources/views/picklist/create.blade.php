@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="row">
-    <div class="col-md-8">
+    <div class="container">
 
                 <form method="POST" action="{{ route('create_confirm') }}">
                     @csrf
@@ -71,15 +70,15 @@
                     </div>
                 </form>
     </div>
-</div>
+
 <script>
     $(function(){
         console.log("doc loaded")
 
         $(document).on('click','.addbtn',function(e){
             e.preventDefault();
-           var value = $(".value").val().trim()
-           var txt = $(".text").val().trim()
+           var value = $(".value").val()
+           var txt = $(".text").val()
            console.log({value,txt});
            if(isNullorDefault(txt)||isNullorDefault(value))
            {
@@ -132,10 +131,10 @@
         var tplrow = `
             <tr>
                 <td>
-                    <input type="text" name="Options[{index}][value]" readonly="readonly" class="form-control form-control-sm" value={value} />
+                    <input type="text" name="Options[{index}][value]" readonly="readonly" class="form-control form-control-sm" value="{value}" />
                 </td>
                 <td>
-                    <input type="text" name="Options[{index}][text]" readonly="readonly" class="form-control form-control-sm" value={text} />
+                    <input type="text" name="Options[{index}][text]" readonly="readonly" class="form-control form-control-sm" value="{text}" />
                 </td>
                 <td>
                     <div class="btn-group">

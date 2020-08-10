@@ -150,10 +150,11 @@ $(function () {
         var htmlselect = new __HtmlSelect(res);
         htmlselect.render(select, "value", -1);
       } else {
+        var label = select.prev().text();
         var name = select.attr("name");
         var css = select.attr("class");
         var id = select.attr("id");
-        var tpl = "<input id=\"".concat(id, "\" class=\"").concat(css, "\" name=\"").concat(name, "\" type=\"text\" />");
+        var tpl = "<label>".concat(label, "</label><input id=\"").concat(id, "\" class=\"").concat(css, "\" name=\"").concat(name, "\" type=\"text\" />");
         select.parent().html(tpl);
       }
     });

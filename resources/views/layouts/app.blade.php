@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
@@ -45,6 +45,9 @@
                     </ul>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Level UP Digital:<b>Atomic Tecnologies</b>
+                </a>
+                <a class="nav-link d-flex">
+                    <input class="form-control form-control-sm d-flex" placeholder="Search"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -133,7 +136,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"> <i class="fa fa-clock-o"></i> <span id="time"></span></a>
+                                <a class="nav-link" href="#"> <i class="fa fa-clock-o"></i> <span id="time">Mon, 10 Aug 2020 02:05:48 GMT</span></a>
                             </li>
                         @endguest
                     </ul>

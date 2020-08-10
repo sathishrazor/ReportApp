@@ -50,12 +50,12 @@ $(".select").each(function(index,el){
         }
         else
         {
+            var label = select.prev().text();
             var name = select.attr("name");
             var css = select.attr("class");
             var id = select.attr("id");
-            var tpl = `<input id="${id}" class="${css}" name="${name}" type="text" />`
+            var tpl = `<label>${label}</label><input id="${id}" class="${css}" name="${name}" type="text" />`
             select.parent().html(tpl);
-
         }
     })
 })

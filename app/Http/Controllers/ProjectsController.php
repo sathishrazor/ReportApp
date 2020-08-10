@@ -9,12 +9,12 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        return View("project.index");
+        return View("projects.index");
     }
 
     public function create()
     {
-        return View("project.create");
+        return View("projects.create");
     }
 
     public function store(Request $request)
@@ -35,21 +35,21 @@ class ProjectsController extends Controller
 
     public function show($id)
     {
-        return View("project.show");
+        return View("projects.show");
     }
 
     public function edit($id)
     {
-        return View("project.edit");
+        return View("projects.edit");
     }
 
     public function update($id)
     {
-        return View("project.index");
+        return View("projects.index");
     }
 
     public function destroy($id)
     {
-        return View("project.index");
+        return View("projects.index");
     }
 }

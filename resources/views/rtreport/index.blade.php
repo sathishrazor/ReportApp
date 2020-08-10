@@ -93,7 +93,7 @@
                 "targets": 1,
                 "render":function(s,c,row)
                 {
-                    return `<a href="/rtreport/${row["id"]}">${row["reference_code"]}</a>`
+                    return `<a href="/rtreport/${row["id"]}">RT_NO_${row["id"]}</a>`
                 }
             }]
         });

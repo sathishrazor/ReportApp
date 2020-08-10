@@ -34,9 +34,7 @@ Route::post('/picklist/edit/{id}', 'PickListController@edit');
 Route::get('/picklist/edit/{id}', 'PickListController@edit');
 Route::post('/picklist/delete/{id}', 'PickListController@delete');
 Route::get('/picklist/delete/{id}', 'PickListController@delete');
-Route::get('/picklist/get/{id}', function ($id) {
-    return PickList::findOrFail($id)->options;
-});
+Route::get('/picklist/get/{id}', "PickListController@get");
 Route::post('/picklist/search',"PickListController@search")->name("PickList.search");
 /*
 |--------------------------------------------------------------------------
