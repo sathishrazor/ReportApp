@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
-        'name','description',"created_by","manager"
+        'name','description',"entity_id","created_by","manager","start_date","end_date"
     ];
 
     public function addressbook()

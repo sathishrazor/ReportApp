@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = [
-        'name','department',"created_by","email","phone","address"
+        'name','department',"created_by","email","phone","address","level","designation"
     ];
 
     public function addressbook()

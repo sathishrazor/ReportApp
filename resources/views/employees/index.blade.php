@@ -3,18 +3,21 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">Technicians
-                   <a class="btn btn-success ml-5" href="/rtreport/create" id="createNewItem"> New RT Report</a>
+                 <h4 class="card-title">Employees
+                 <a class="btn btn-success ml-5" href="{{route('employees.create')}}" id="createNewItem"> New Employee</a>
                  </h4>
              </div>
           </div>
           <div class="card-body">
-            <table class="table table-bordered data-table">
+            <table class="table table-borderless table-sm data-table">
                  <thead>
                      <tr>
                          <th width="5%">No</th>
                          <th>Name</th>
-                         <th>Client</th>
+                         <th>email</th>
+                         <th>phone</th>
+                         <th>created_at</th>
+                         <th>created_by</th>
                          <th width="15%">Action</th>
                      </tr>
                  </thead>
@@ -22,36 +25,7 @@
                  </tbody>
              </table>
          </div>
-         <div class="modal fade" id="ajaxModel" aria-hidden="true">
-             <div class="modal-dialog">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <h4 class="modal-title" id="modelHeading"></h4>
-                     </div>
-                     <div class="modal-body">
-                         <form id="ItemForm" name="ItemForm" class="form-horizontal">
-                            <input type="hidden" name="Item_id" id="Item_id">
-                             <div class="form-group">
-                                 <label for="name" class="col-sm-2 control-label">Name</label>
-                                 <div class="col-sm-12">
-                                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required="">
-                                 </div>
-                             </div>
-                             <div class="form-group">
-                                 <label class="col-sm-3 control-label">descriptions</label>
-                                 <div class="col-sm-12">
-                                     <textarea id="description" name="description" required="" placeholder="Enter descriptions" class="form-control"></textarea>
-                                 </div>
-                             </div>
-                             <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
-                              </button>
-                             </div>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-          </div>
+
         </div>
 
 @section('table')
@@ -73,15 +47,43 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('loaddata.get') }}",
+        ajax: "{{ route('employees.datatable') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
-            {data: 'description', name: 'description'},
+            {data: 'email', name: 'email'},
+            {data: 'phone', name: 'phone'},
+            {data: 'created_at', name: 'created_at'},
+            {data: 'created_by', name: 'created_by'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
+        ],
+        "columnDefs": [{
+                "targets": 1,
+                "render":function(s,c,row)
+                {
+                    return `<a href="employees/${row["id"]}">${row["name"]}</a>`
+                }
+            }]
     });
 
+    $(document).on('click','.deleteItem',function(ev){
+      var data = table.row($(this).parents('tr')).data()
+        console.log(data);
+        var answer = confirm("Are you sure want to continue?");
+        if(answer)
+        {
+            $.ajax({
+            url: `${$("#rooturl").val()}/employees/${data.id}`,
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+                console.log("deleteres",result);
+                $('.data-table').DataTable().ajax.reload();
+            }
+        });
+        }
+
+    })
   });
 </script>
 @endsection

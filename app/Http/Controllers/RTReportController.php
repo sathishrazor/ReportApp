@@ -42,18 +42,18 @@ class RTReportController extends Controller
 
     public function store(Request $request)
     {
+       // dd($request);
         $this->validate($request, [
-            'owner_name' => 'required',
-            'owner_address' => 'required',
-            'client_name' => 'required',
-            'client_address' => 'required',
-            'project_name' => 'required',
-            'project_address' => 'required',
+            'owner' => 'required',
+            'client' => 'required',
+            'project' => 'required',
             'requested_by' => 'required',
             'request_no' => 'required',
         ]);
         $data =$request->all();
         $report = RTReport::create($data);
+
+        $report->createdby = auth()->user()->email;
         $report->save();
         foreach ($request->interpretations as $int) {
             $report->interpretations()->create($int);
@@ -79,10 +79,11 @@ class RTReportController extends Controller
     {
         return View("rtreport.index");
     }
-
     public function destroy($id)
     {
-        return View("rtreport.index");
+        $record = RTReport::findOrFail($id);
+        $record->delete();
+        return response()->json(["result"=>"success"]);
     }
 
 }

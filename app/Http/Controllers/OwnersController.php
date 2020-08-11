@@ -20,7 +20,9 @@ class OwnersController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="/owners/'.$row->id.'/edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    $btn = '<a href="owners/'.$row->id.'/edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  class="btn btn-danger btn-sm deleteItem">Delete</a>';
+
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -45,6 +47,13 @@ class OwnersController extends Controller
 
         $Owner = Owner::create( $request->all());
         $Owner->created_by = auth()->user()->email;
+        $Owner->save();
+
+        foreach ($request->addressbook as $address) {
+            $Owner->addressbook()->create($address);
+        }
+
+
         $Owner->push();
 
         return  redirect()->action('OwnersController@index');
@@ -55,6 +64,8 @@ class OwnersController extends Controller
         $owner = Owner::findOrFail($id);
         return View("owners.show",["record" => $owner]);
     }
+
+
 
     public function edit($id)
     {
@@ -68,7 +79,20 @@ class OwnersController extends Controller
 
     public function destroy($id)
     {
-        return View("owners.index");
+        $record = Owner::findOrFail($id);
+        $record->delete();
+        return response()->json(["result"=>"success"]);
+    }
+
+    public function get()
+    {
+
+        $pick = Owner::select([
+            "entity_id as text",
+            "name",
+            "id as value"
+        ])->get();
+        return response()->json($pick);
     }
 
 }

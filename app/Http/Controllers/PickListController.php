@@ -66,7 +66,8 @@ class PickListController extends Controller
         $q = $req->q;
 
         if ($q == '') {
-            $pklist = PickList::where('name', $id)->first()->options::orderby('text', 'asc')->limit(5)->get();
+            $pklist = PickList::where('name', $id)->first()->options()->limit(10)->get();
+            return response()->json($pklist);
         } else {
             $pklist =PickList::where('name', $id)->first();
             if(!$pklist)

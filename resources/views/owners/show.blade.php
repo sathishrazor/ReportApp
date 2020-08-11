@@ -4,9 +4,13 @@
 
     <div class="card">
         <div class="card-header">
-            Owner:{{$record->entity_id}}
+           <i class="fa fa-user"></i> Owner:{{$record->entity_id}}
         </div>
         <div class="card-body">
+            <div class="btn btn-group">
+            <a href="{{route("owners.edit",$record->id)}}" class="btn btn-success">Edit</a>
+            <a href="{{route('owners.index')}}" class="btn btn-secondary">Back to List</a>
+            </div>
                 <table class="table table-borderless">
                     <tr>
                         <td>

@@ -100,6 +100,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 $(function () {
+  var DROP_DOWN_PRX = [];
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
   var cache = {};
   $(".autocomplete").autocomplete({
@@ -143,11 +144,24 @@ $(function () {
   $(".select").each(function (index, el) {
     var select = $(el);
     var drop_down = select.attr("dropdown");
-    var url = "/picklist/get/" + drop_down;
+    var record = select.attr("record");
+    var url = $("#rooturl").val();
+
+    if (drop_down) {
+      url += "/picklist/get/" + drop_down;
+    } else if (record) {
+      url += "/form/".concat(record);
+    }
+
     var req = $.get(url);
     req.then(function (res) {
       if (res.length > 0) {
         var htmlselect = new __HtmlSelect(res);
+        DROP_DOWN_PRX.push(htmlselect);
+        htmlselect.registerListener(function (newval) {
+          console.log("dropdown_changed", newval);
+        });
+        console.log(DROP_DOWN_PRX);
         htmlselect.render(select, "value", -1);
       } else {
         var label = select.prev().text();
@@ -165,10 +179,12 @@ var __HtmlSelect = /*#__PURE__*/function () {
   function __HtmlSelect(data) {
     _classCallCheck(this, __HtmlSelect);
 
-    this.data = data.map(function (c) {
+    this.listeners = [];
+    this._data = data.map(function (c) {
+      c.name = c.name == undefined ? "" : c.name;
       return {
         value: c.value,
-        text: c.text
+        text: c.text + "::" + c.name
       };
     });
   }
@@ -176,8 +192,8 @@ var __HtmlSelect = /*#__PURE__*/function () {
   _createClass(__HtmlSelect, [{
     key: "render",
     value: function render(el, name, option) {
-      var tpl = "<option value='All'>Please select " + name + "</option>";
-      tpl += this.data.map(function (c, i) {
+      var tpl = "";
+      tpl += this._data.map(function (c, i) {
         if (i == option) {
           return "<option selected value=" + c.value + ">" + c.text + "</option>";
         }
@@ -185,6 +201,22 @@ var __HtmlSelect = /*#__PURE__*/function () {
         return "<option value=" + c.value + ">" + c.text + "</option>";
       }).join("");
       el.html(tpl);
+    }
+  }, {
+    key: "registerListener",
+    value: function registerListener(fn) {
+      this.listeners.push(fn);
+    }
+  }, {
+    key: "data",
+    get: function get() {
+      return this._data;
+    },
+    set: function set(val) {
+      this._data = val;
+      this.listeners.forEach(function (c) {
+        c(val);
+      });
     }
   }]);
 

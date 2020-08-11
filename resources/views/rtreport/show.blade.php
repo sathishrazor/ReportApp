@@ -11,41 +11,44 @@
             width: 100%;
         }
 
-        thead{
+        thead {
             text-align: center;
         }
+
         table,
         th,
         td {
             border: 1px solid black;
             border-collapse: collapse;
             padding: 5px;
-            font-size:small;
+            font-size: small;
         }
-        body{
+
+        body {
             margin: 15px;
         }
-        .appendix-table{
 
-        }
-        .appendix-table td, .appendix-table  th {
-            padding:2px;
+        .appendix-table {}
+
+        .appendix-table td,
+        .appendix-table th {
+            padding: 2px;
             font-size: smaller;
         }
-        .txt-right
-        {
+
+        .txt-right {
             text-align: right
         }
 
-        .txt-center{
+        .txt-center {
             text-align: center
         }
 
-        .txt-left
-        {
+        .txt-left {
             text-align: left
         }
-        p{
+
+        p {
             margin-top: 10px;
             margin-bottom: 10px;
         }
@@ -71,7 +74,7 @@
                     Report No
                 </td>
                 <td>
-                   RT_NO_{{$record->id}}
+                    RT_NO_{{$record->id}}
                 </td>
             </tr>
         </tbody>
@@ -80,19 +83,19 @@
     <table>
         <tr>
             <td>Owner Name</td>
-            <td> {{$record->owner_name}}</td>
+            <td> {{$record->owner_ref->name}}</td>
             <td>Owner Address</td>
             <td>{{$record->owner_address}}</td>
         </tr>
         <tr>
             <td>Client Name</td>
-            <td>{{$record->client_name}}</td>
+            <td>{{$record->client_ref->name}}</td>
             <td>Client Address</td>
             <td>{{$record->client_address}}</td>
         </tr>
         <tr>
             <td>Project Name</td>
-            <td>{{$record->project_name}}</td>
+            <td>{{$record->project_ref->name}}</td>
             <td>Project Address</td>
             <td>{{$record->project_address}}</td>
         </tr>
@@ -104,24 +107,24 @@
         </tr>
         <tr>
             <td>PO. No.</td>
-        <td>{{$record->po_tranno}}</td>
+            <td>{{$record->po_tranno}}</td>
             <td>W.O./ Job No.</td>
-        <td>${{$record->wo_tranno}}</td>
+            <td>${{$record->wo_tranno}}</td>
         </tr>
     </table>
     <p><b>System Details</b></p>
     <table>
         <tr>
             <td>Procedure No.</td>
-        <td>{{$record->procedure_no}}</td>
+            <td>{{$record->procedure_no}}</td>
             <td>Reference Code</td>
             <td>{{$record->reference_code}}</td>
         </tr>
         <tr>
             <td>Acceptance Criteria</td>
-        <td>{{$record->acceptance_criteria}}</td>
+            <td>{{$record->acceptance_criteria}}</td>
             <td>Project Specification</td>
-        <td>{{$record->project_spec}}</td>
+            <td>{{$record->project_spec}}</td>
         </tr>
         <tr>
             <td>Material</td>
@@ -137,13 +140,13 @@
         </tr>
         <tr>
             <td>Drawing No</td>
-        <td>{{$record->drawing_no}}</td>
+            <td>{{$record->drawing_no}}</td>
             <td>Line No.</td>
             <td>{{$record->line_no}}</td>
         </tr>
         <tr>
             <td>Weld Process</td>
-        <td>{{$record->weld_process}}</td>
+            <td>{{$record->weld_process}}</td>
             <td>Weld Reinforcement.</td>
             <td>{{$record->weld_reinforcement}}</td>
         </tr>
@@ -187,11 +190,11 @@
             <td>Configuration</td>
             <td>{{$record->configuration}}</td>
             <td>Welder ID</td>
-        <td>{{$record->welder_id}}</td>
+            <td>{{$record->welder_id}}</td>
             <td>Technician 1</td>
-            <td>{{$record->technician_1}}</td>
+            <td>{{$record->technician_1_ref->name}}</td>
             <td>Technician 2</td>
-            <td>{{$record->technician_2}}</td>
+            <td>{{$record->technician_2_ref->name}}</td>
         </tr>
 
     </table>
@@ -223,7 +226,7 @@
         <tbody>
 
             @foreach ($record->interpretations as $item)
-             <tr>
+            <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$item->joint_no}}</td>
                 <td>{{$item->size}}</td>
@@ -266,74 +269,74 @@
 
 
     <p><b>Legend:</b></p>
-        <table class="appendix-table">
-            <tr>
-                <td>POR</td>
-                <TD>Porosity</TD>
-                <td>IC</td>
-                <td>Internal Concavity</td>
-                <td>CS</td>
-                <td>Carbon Steel</td>
-            </tr>
-            <tr>
-                <td>CP</td>
-                <TD>Cluster Porosity</TD>
-                <td>EC</td>
-                <td>External Concavity</td>
-                <td>SS</td>
-                <td>Stainless Steel</td>
-            </tr>
-            <tr>
-                <td>SI</td>
-                <TD>Slag Inclusion</TD>
-                <td>EP</td>
-                <td>Excess Penetration</td>
-                <td>SOD</td>
-                <td>Source to Object Distance</td>
-            </tr>
-            <tr>
-                <td>TI</td>
-                <TD>Tungsten Inclusion</TD>
-                <td>LOP</td>
-                <td>Lack of Peneration</td>
-                <td>OFD</td>
-                <td>Object to Film Distance</td>
-            </tr>
-            <tr>
-                <td>CR</td>
-                <TD>Crack</TD>
-                <td>LOF</td>
-                <td>Lack of Fusion</td>
-                <td>Req.</td>
-                <td>Required</td>
-            </tr>
-            <tr>
-                <td>IU</td>
-                <TD>Internal Under Cut</TD>
-                <td>BT</td>
-                <td>Burn Through</td>
-                <td>Vis</td>
-                <td>Visible</td>
-            </tr>
-            <tr>
-                <td>EU</td>
-                <TD>External Under Cut</TD>
-                <td>W/H</td>
-                <td>Warm Hole</td>
-                <td>CS</td>
-                <td>Carbon Steel</td>
-            </tr>
-            <tr>
-                <td>POR</td>
-                <TD>Porosity</TD>
-                <td>IC</td>
-                <td>Internal Concavity</td>
-                <td>CS</td>
-                <td>Carbon Steel</td>
-            </tr>
-        </table>
+    <table class="appendix-table">
+        <tr>
+            <td>POR</td>
+            <TD>Porosity</TD>
+            <td>IC</td>
+            <td>Internal Concavity</td>
+            <td>CS</td>
+            <td>Carbon Steel</td>
+        </tr>
+        <tr>
+            <td>CP</td>
+            <TD>Cluster Porosity</TD>
+            <td>EC</td>
+            <td>External Concavity</td>
+            <td>SS</td>
+            <td>Stainless Steel</td>
+        </tr>
+        <tr>
+            <td>SI</td>
+            <TD>Slag Inclusion</TD>
+            <td>EP</td>
+            <td>Excess Penetration</td>
+            <td>SOD</td>
+            <td>Source to Object Distance</td>
+        </tr>
+        <tr>
+            <td>TI</td>
+            <TD>Tungsten Inclusion</TD>
+            <td>LOP</td>
+            <td>Lack of Peneration</td>
+            <td>OFD</td>
+            <td>Object to Film Distance</td>
+        </tr>
+        <tr>
+            <td>CR</td>
+            <TD>Crack</TD>
+            <td>LOF</td>
+            <td>Lack of Fusion</td>
+            <td>Req.</td>
+            <td>Required</td>
+        </tr>
+        <tr>
+            <td>IU</td>
+            <TD>Internal Under Cut</TD>
+            <td>BT</td>
+            <td>Burn Through</td>
+            <td>Vis</td>
+            <td>Visible</td>
+        </tr>
+        <tr>
+            <td>EU</td>
+            <TD>External Under Cut</TD>
+            <td>W/H</td>
+            <td>Warm Hole</td>
+            <td>CS</td>
+            <td>Carbon Steel</td>
+        </tr>
+        <tr>
+            <td>POR</td>
+            <TD>Porosity</TD>
+            <td>IC</td>
+            <td>Internal Concavity</td>
+            <td>CS</td>
+            <td>Carbon Steel</td>
+        </tr>
+    </table>
 
-        <p><b>Authority</b></p>
+    <p><b>Authority</b></p>
     <table>
         <thead>
             <tr>
@@ -356,16 +359,35 @@
             </tr>
             <tr>
                 <td>Name</td>
-                <td></td>
-                <td></td>
+                <td>
+
+                    @if ($record->inspected_by>0)
+                    {{ $record->inspected_by_ref->name}}
+                        @endif
+                </td>
+                <td>
+
+                @if ($record->authorised_by>0)
+                    {{ $record->authorised_by_ref->name}}
+                        @endif
+
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Qualification</td>
-                <td></td>
-                <td></td>
+                <td>
+                    @if ($record->inspected_by>0)
+                    {{ $record->inspected_by_ref->level}}
+                    @endif
+                </td>
+                <td>
+                    @if ($record->authorised_by>0)
+                    {{ $record->authorised_by_ref->level}}
+                    @endif
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -381,9 +403,9 @@
         </tbody>
     </table>
 
-<script>
-    print();
-</script>
+    <script>
+        print();
+    </script>
 </body>
 
 </html>

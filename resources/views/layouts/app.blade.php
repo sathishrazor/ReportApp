@@ -96,8 +96,8 @@
                                     <a class="dropdown-item" href="{{ route('clients.index') }}">
                                         Clients
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('technicians.index') }}">
-                                        Technicians
+                                    <a class="dropdown-item" href="{{ route('employees.index') }}">
+                                        Employees
                                     </a>
                                     <a class="dropdown-item" href="{{ route('projects.index') }}">
                                         Projects
@@ -145,6 +145,8 @@
         </nav>
 
         <main class="py-4">
+
+<input id="rooturl" class="d-none" value="{{URL::to('/')}}"/>
             @yield('content')
         </main>
 

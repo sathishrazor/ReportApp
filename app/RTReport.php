@@ -3,17 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RTReport extends Model
 {
     //
     protected $fillable = [
-                "owner_name",
-                "owner_name",
+                "owner",
                 "owner_address",
-                "client_name",
+                "client",
                 "client_address",
-                "project_name",
+                "project",
                 "project_address",
                 "requested_by",
                 "request_no",
@@ -46,12 +46,55 @@ class RTReport extends Model
                 "configuration",
                 "welder_id",
                 "technician_1",
-                "technician_2"
+                "technician_2",
+                "inspected_by",
+                "authorised_by"
     ];
 
     public function interpretations()
     {
        return $this->HasMany(interpretation::class);
+    }
+
+    public function owner_ref()
+    {
+        return $this->belongsTo(Owner::class,"owner");
+    }
+
+    public function client_ref()
+    {
+        return $this->belongsTo(Client::class,"client");
+    }
+
+    public function project_ref()
+    {
+        return $this->belongsTo(Project::class,"project");
+    }
+
+    public function requested_by_ref()
+    {
+        return $this->belongsTo(Employee::class,'requested_by');
+    }
+
+
+    public function inspected_by_ref()
+    {
+        return $this->belongsTo(Employee::class,'inspected_by');
+    }
+
+    public function authorised_by_ref()
+    {
+        return $this->belongsTo(Employee::class,'authorised_by');
+    }
+
+    public function technician_1_ref()
+    {
+        return $this->belongsTo(Employee::class,'technician_1');
+    }
+
+    public function technician_2_ref()
+    {
+        return $this->belongsTo(Employee::class,'technician_2');
     }
 
       // this is a recommended way to declare event handlers

@@ -14,10 +14,8 @@
                 <tr>
                     <th width="5%">No</th>
                     <th>Report No</th>
-                    <th>Owner</th>
-                    <th>Client</th>
-                    <th>Project</th>
-                    <th>Requested by</th>
+                    <th>Created by</th>
+                    <th>Created On</th>
                     <th>PO No</th>
                     <th>WO No</th>
                     <th width="15%">Action</th>
@@ -27,9 +25,7 @@
             </tbody>
         </table>
     </div>
-
 </div>
-
 @section('table')
 <link href="https://cdn.datatables.net/1.10.17/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -49,7 +45,7 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('rtreport.get') }}",
+            ajax: "{{ route('rtreport.datatable') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
@@ -59,21 +55,15 @@
                     name: 'reference_code'
                 },
                 {
-                    data: 'owner_name',
-                    name: 'owner_name'
+                    data: 'createdby',
+                    name: 'createdby'
                 },
                 {
-                    data: 'client_name',
-                    name: 'client_name'
+                    data: 'created_at',
+                    name: 'created_at'
                 },
-                {
-                    data: 'project_name',
-                    name: 'project_name'
-                },
-                {
-                    data: 'requested_by',
-                    name: 'requested_by'
-                },
+
+
                 {
                     data: 'po_tranno',
                     name: 'po_tranno'

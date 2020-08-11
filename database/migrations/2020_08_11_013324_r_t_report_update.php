@@ -55,8 +55,8 @@ class RTReportUpdate extends Migration
             $table->string("designation")->nullable();
             $table->string("location")->nullable();
             $table->string("emergency_contact_no")->nullable();
-            $table->boolean("isactive");
-            $table->boolean("access");
+            $table->boolean("isactive")->default(0);
+            $table->boolean("access")->default(0);
 
         });
 

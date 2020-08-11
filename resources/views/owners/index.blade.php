@@ -47,7 +47,7 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('owners.get') }}",
+        ajax: "{{ route('owners.datatable') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
@@ -65,6 +65,27 @@
                 }
             }]
     });
+
+
+    $(document).on('click','.deleteItem',function(ev){
+      var data = table.row($(this).parents('tr')).data()
+        console.log(data);
+        var answer = confirm("Are you sure want to continue?");
+        if(answer)
+        {
+            $.ajax({
+            url: `${$("#rooturl").val()}/owners/${data.id}`,
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+                console.log("deleteres",result);
+                $('.data-table').DataTable().ajax.reload();
+            }
+        });
+        }
+
+    })
+
 
   });
 </script>

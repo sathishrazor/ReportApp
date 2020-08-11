@@ -23,37 +23,42 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------------------------
 | Profile Routes
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------------------------
 */
 Route::resource('Profile','ProfileController');
 /*
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------------------------
 | Profile Routes
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------------------------
 */
 Route::resource('picklist', 'PickListController');
 Route::resource('rtreport', 'RTReportController');
 Route::resource('clients', 'ClientsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('owners', 'OwnersController');
-Route::resource('technicians', 'TechniciansController');
+Route::resource('employees', 'EmployeesController');
 /*
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------------------------
 | Datatable Routes
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------------------------
 */
-Route::get('/datatable/rtreport/index','RTReportController@loadData')->name("rtreport.get");
-Route::get('/datatable/owners/index','OwnersController@loadData')->name("owners.get");
-Route::get('/datatable/clients/index','ClientsController@loadData')->name("clients.get");
-Route::get('/datatable/projects/index','ProjectsController@loadData')->name("projects.get");
-Route::get('/datatable/technicians/index','TechniciansController@loadData')->name("technicians.get");
-Route::get('/datatable/picklist/index','PickListController@loadData')->name("picklist.get");
+Route::get('datatable/rtreport/index','RTReportController@loadData')->name("rtreport.datatable");
+Route::get('/datatable/owners/index','OwnersController@loadData')->name("owners.datatable");
+Route::get('datatable/clients/index','ClientsController@loadData')->name("clients.datatable");
+Route::get('datatable/projects/index','ProjectsController@loadData')->name("projects.datatable");
+Route::get('datatable/employees/index','EmployeesController@loadData')->name("employees.datatable");
+Route::get('datatable/picklist/index','PickListController@loadData')->name("picklist.datatable");
 /*
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------------------------
 | Form Helper Routes
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------------------------
 */
-Route::get('/picklist/get/{id}', "PickListController@get");
-Route::post('/picklist/search',"PickListController@search")->name("PickList.search");
+Route::get('picklist/get/{id}', "PickListController@get");
+Route::post('picklist/search',"PickListController@search")->name("PickList.search");
+
+Route::get('form/owners',"OwnersController@get")->name("owners.get");
+Route::get('form/employees',"EmployeesController@get")->name("employees.get");
+Route::get('form/clients',"ClientsController@get")->name("clients.get");
+Route::get('form/projects',"ProjectsController@get")->name("projects.get");

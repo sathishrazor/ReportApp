@@ -10,7 +10,6 @@
                 <button type="submit" class="btn btn-warning">Reset</button>
                 <button type="submit" class="btn btn-secondary">Back</button>
             </div>
-
         </div>
         <br />
         <div class="card">
@@ -21,8 +20,8 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Owner Name</label>
-                        <select  name="owner_name" class="form-control form-control-sm select" dropdown="owners"></select>
-                        @error('owner_name')
+                        <select  name="owner" class="form-control form-control-sm select" record="owners"></select>
+                        @error('owner')
                             <small class="form-text text-muted">{{ $message }}</small>
                         @enderror
                         {{-- <small class="form-text text-muted">select owner</small> --}}
@@ -38,8 +37,8 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Client Name</label>
-                        <input name="client_name" value="{{old('client_name')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="clients">
-                        @error('client_name')
+                        <select name="client"  class="form-control form-control-sm select" record="clients"></select>
+                        @error('client')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -55,36 +54,36 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Project Name</label>
-                        <input name="project_name" value="{{old('project_name')}}" type="text" class="form-control form-control-sm" placeholder="">
-                        @error('project_name')
+                        <select name="project"  class="form-control form-control-sm select" record="projects"></select>
+                        @error('project')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Project Address</label>
-                        <input name="project_address" value="{{old('project_address')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="project_address" value="{{old('project_address')}}"  type="text" class="form-control form-control-sm">
                         @error('project_address')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Requested By</label>
-                        <input name="requested_by" value="{{old('requested_by')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <select name="requested_by"  class="form-control form-control-sm select" record="employees"></select>
                         @error('requested_by')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Request No</label>
-                        <input name="request_no" value="{{old('request_no')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="request_no" value="{{old('request_no')}}"  type="text" class="form-control form-control-sm">
                         @error('request_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>P.O No.</label>
-                        <input name="po_tranno"  value="{{old('po_tranno')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="po_tranno"  value="{{old('po_tranno')}}" type="text" class="form-control form-control-sm">
                         @error('po_tranno')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -92,7 +91,7 @@
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3  inner-addon right-addon">
                         <label>W.O. No./Job No.</label>
                         <i class="fa fa-plus"></i>
-                        <input name="wo_tranno" value="{{old('wo_tranno')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="3" placeholder="">
+                        <input name="wo_tranno" value="{{old('wo_tranno')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="3">
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                 </div>
@@ -105,7 +104,7 @@
                 <div class="form-row">
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Procedure No.</label>
-                        <input name="procedure_no" value="{{old('procedure_no')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="procedure_no" value="{{old('procedure_no')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Procedure No" >
                         @error('procedure_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -113,7 +112,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Reference Code</label>
-                        <input name="reference_code" value="{{old('reference_code')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="reference_code" value="{{old('reference_code')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Reference Code">
                         @error('reference_code')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -121,7 +120,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Acceptance Criteria</label>
-                        <input name="acceptance_criteria" value="{{old('acceptance_criteria')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="acceptance_criteria" value="{{old('acceptance_criteria')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Acceptance Criteria">
                         @error('acceptance_criteria')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -129,7 +128,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Project Specification</label>
-                        <input name="project_spec"  value="{{old('project_spec')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="project_spec"  value="{{old('project_spec')}}" type="text" class="form-control form-control-sm">
                         @error('project_spec')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -137,7 +136,8 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Material</label>
-                        <input name="material"   value="{{old('material')}}"   type="text" class="form-control form-control-sm" placeholder="">
+
+                        <input name="material"   value="{{old('material')}}"   type="text" class="form-control form-control-sm autocomplete" dropdown="Material">
                         @error('material')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -145,49 +145,49 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Grade</label>
-                        <input name="grade"   value="{{old('grade')}}"    type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="grade"   value="{{old('grade')}}"    type="text" class="form-control form-control-sm autocomplete" dropdown="Grade">
                         @error('grade')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Surface Condition</label>
-                        <input name="surface_condition" value="{{old('surface_condition')}}"   type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="surface_condition" value="{{old('surface_condition')}}"   type="text" class="form-control form-control-sm autocomplete" dropdown="Surface Condition">
                         @error('surface_condition')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Surface Temperature</label>
-                        <input name="surface_temperature" value="{{old('surface_temperature')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="surface_temperature" value="{{old('surface_temperature')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Surface Temperature">
                         @error('surface_temperature')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Drawing No.</label>
-                        <input  name="drawing_no" value="{{old('drawing_no')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input  name="drawing_no" value="{{old('drawing_no')}}"  type="text" class="form-control form-control-sm">
                         @error('drawing_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Line No.</label>
-                        <input  name="line_no"  value="{{old('line_no')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input  name="line_no"  value="{{old('line_no')}}"  type="text" class="form-control form-control-sm">
                         @error('line_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Weld Process</label>
-                        <input name="weld_process"  value="{{old('weld_process')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="weld_process"  value="{{old('weld_process')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Weld Process">
                         @error('weld_process')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Weld Reinforcement</label>
-                        <input  name="weld_reinforcement"  value="{{old('weld_reinforcement')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input  name="weld_reinforcement"  value="{{old('weld_reinforcement')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Weld Reinforcement">
                         @error('weld_reinforcement')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -204,7 +204,8 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>X Ray Voltage/Source</label>
-                        <input  name="xray_volt_src" value="{{old('xray_volt_src')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input  name="xray_volt_src" value="{{old('xray_volt_src')}}"  type="text"
+                        class="form-control form-control-sm autocomplete" dropdown='X-Ray Voltage/ Source'>
                         @error('xray_volt_src')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -212,7 +213,8 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Source/Focal Spot Size</label>
-                        <input name="src_spot_size"  value="{{old('src_spot_size')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="src_spot_size"  value="{{old('src_spot_size')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="X-Ray / Source">
                         @error('src_spot_size')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -220,7 +222,8 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Flim Manufacturer</label>
-                        <input name="flim_manufacturer"   value="{{old('flim_manufacturer')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="flim_manufacturer"   value="{{old('flim_manufacturer')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="Fim Manufacturer">
                         @error('flim_manufacturer')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -228,7 +231,8 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Flim Type</label>
-                        <input  name="flim_type"   value="{{old('flim_type')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input  name="flim_type"   value="{{old('flim_type')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="Film Type">
                         @error('flim_type')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -236,7 +240,8 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Flim in Cassette</label>
-                        <input name="flim_in_cassette"  value="{{old('flim_in_cassette')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="flim_in_cassette"  value="{{old('flim_in_cassette')}}"
+                          type="text" class="form-control form-control-sm autocomplete" dropdown="Films in Cassette">
                         @error('flim_in_cassette')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -244,73 +249,76 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Technique</label>
-                        <input name="technique"  value="{{old('technique')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="technique"  value="{{old('technique')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Technique">
                         @error('technique')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>SOD</label>
-                        <input name="sod"  value="{{old('sod')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="sod"  value="{{old('sod')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="SOD">
                         <small  class="form-text text-muted">Source To Object Distance.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>OFD</label>
-                        <input name="ofd"   value="{{old('ofd')}}"   type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="ofd"   value="{{old('ofd')}}"   type="text" class="form-control form-control-sm" dropdown="OFD">
                         <small  class="form-text text-muted">Object To Film Distance.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>IQI</label>
-                        <input name="iqi"   value="{{old('iqi')}}" type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="iqi"   value="{{old('iqi')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="IQI">
                         @error('iqi')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Sensitivity</label>
-                        <input name="sensitivity" value="{{old('sensitivity')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="sensitivity" value="{{old('sensitivity')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Sensitivity">
                         @error('sensitivity')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Ug</label>
-                        <input  name="ug"  value="{{old('ug')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input  name="ug"  value="{{old('ug')}}"
+                          type="text" class="form-control form-control-sm autocomplete" dropdown="Ug">
                         @error('ug')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Lead Screen Thickness</label>
-                        <input name="lead_scr_thickness"   value="{{old('lead_scr_thickness')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="lead_scr_thickness"   value="{{old('lead_scr_thickness')}}"
+                          type="text" class="form-control form-control-sm autocomplete" dropdown="Lead Screen Thickness">
                         @error('lead_scr_thickness')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Configuration</label>
-                        <input name="configuration"   value="{{old('configuration')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="configuration"   value="{{old('configuration')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="Configuration">
                         @error('configuration')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Welder ID</label>
-                        <input name="welder_id"   value="{{old('welder_id')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <input name="welder_id"   value="{{old('welder_id')}}"  type="text" class="form-control form-control-sm">
                         @error('welder_id')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Technician 1</label>
-                        <input name="technician_1"   value="{{old('technician_1')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <select name="technician_1"  class="form-control form-control-sm select" record="employees"></select>
                         @error('technician_1')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Technician 2</label>
-                        <input name="technician_2"   value="{{old('technician_2')}}"  type="text" class="form-control form-control-sm" placeholder="">
+                        <select name="technician_2"  class="form-control form-control-sm select" record="employees"></select>
                         @error('technician_2')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -356,16 +364,16 @@
                         <tr>
                             <td>&nbsp;</td>
                             <td><input name-attr="joint_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="size" class="form-control form-control-sm autocomplete" dropdown="3" /></td>
+                            <td><input name-attr="size" class="form-control form-control-sm"/></td>
                             <td><input name-attr="parent" class="form-control form-control-sm" /></td>
                             <td><input name-attr="weld" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="section" class="form-control form-control-sm autocomplete" dropdown="3" /></td>
+                            <td><input name-attr="section" class="form-control form-control-sm"/></td>
                             <td><input name-attr="wire_req" class="form-control form-control-sm" /></td>
                             <td><input name-attr="wire_vis" class="form-control form-control-sm" /></td>
                             <td><input name-attr="density" class="form-control form-control-sm" /></td>
                             <td><input name-attr="discontinuity" class="form-control form-control-sm" /></td>
                             <td><input name-attr="size" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="result" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="result" class="form-control form-control-sm"/></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
@@ -383,6 +391,7 @@
                 </table>
             </div>
         </div>
+        <br/>
         <div class="card">
             <div class="card-header">
                 Authority Details
@@ -392,16 +401,18 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Inspected By</label>
-                        <input  name="inspected_by" value="{{old('inspected_by')}}"  type="text" class="form-control form-control-sm">
-                        @error('xray_volt_src')
+                        {{-- <input  name="inspected_by" value="{{old('inspected_by')}}"  type="text" class="form-control form-control-sm"> --}}
+                        <select name="inspected_by" class="form-control form-control-sm select" record="employees" ></select>
+                        @error('inspected_by')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Authorised By</label>
-                        <input  name="authorised_by" value="{{old('authorised_by')}}"  type="text" class="form-control form-control-sm">
-                        @error('xray_volt_src')
+                        <select name="authorised_by" class="form-control form-control-sm select" record="employees" ></select>
+                        {{-- <input  name="authorised_by" value="{{old('authorised_by')}}"  type="text" class="form-control form-control-sm"> --}}
+                        @error('authorised_by')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -410,6 +421,7 @@
         </div>
     </form>
 </div>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
     .ui-autocomplete-loading {
@@ -418,7 +430,6 @@
 </style>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{asset('js/form_auto_complete.js')}}"></script>
-
 <script>
     $(".add-btn").click(function(e) {
         e.preventDefault();

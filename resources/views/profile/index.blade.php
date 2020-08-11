@@ -44,7 +44,7 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('Profile.index') }}",
+        ajax: "{{ route('Profile.datatable') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'username', name: 'username'},
