@@ -47,9 +47,9 @@ class PickListController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    $btn = '<a href="/picklist/'.$row->id.'/edit"  data-toggle="tooltip"   class="edit btn btn-primary btn-sm editItem">Edit</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem">Delete</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  class="btn btn-danger btn-sm deleteItem">Delete</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -97,7 +97,7 @@ class PickListController extends Controller
     }
 
 
-    public function create_confirm(Request $request)
+    public function store(Request $request)
     {
 
         $pklist = new PickList();
@@ -115,21 +115,35 @@ class PickListController extends Controller
 
     public function edit($id)
     {
-        return view('picklist.edit');
+        $record = PickList::findOrFail($id);
+        return view('picklist.edit',["record"=>$record]);
     }
 
-    public function edit_confirm(Request $request)
+
+
+    public function update($id,Request $request)
     {
-        return  redirect()->action('${App\Http\Controllers\HomeController@index}');
+
+        $task = PickList::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'Options'=>'required'
+
+        ]);
+
+        $input = $request->all();
+
+        $task->fill($input)->push();
+
+        return  redirect()->action('PickListController@index');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        return view('picklist.delete');
-    }
-
-    public function delete_confirm(Request $request)
-    {
-        return  redirect()->action('${App\Http\Controllers\HomeController@index}');
+        $record = PickList::findOrFail($id);
+        $record->delete();
+        return response()->json(["result"=>"success"]);
     }
 }

@@ -23,13 +23,14 @@
             font-size:small;
         }
         body{
-            margin: 20px;
+            margin: 15px;
         }
         .appendix-table{
-            font-size: smaller
+
         }
         .appendix-table td, .appendix-table  th {
             padding:2px;
+            font-size: smaller;
         }
         .txt-right
         {
@@ -43,6 +44,10 @@
         .txt-left
         {
             text-align: left
+        }
+        p{
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -260,7 +265,7 @@
     </table>
 
 
-    <p><b>Legend</b></p>
+    <p><b>Legend:</b></p>
         <table class="appendix-table">
             <tr>
                 <td>POR</td>
@@ -327,9 +332,58 @@
                 <td>Carbon Steel</td>
             </tr>
         </table>
+
+        <p><b>Authority</b></p>
+    <table>
+        <thead>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Inspected By</td>
+                <td>Authorized Signatory</td>
+                <td>Contractor/Client/Qc Incharge</td>
+                <td>Client</td>
+                <td>Owner/Third Party</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="min-height: 100px">
+                <td>Signature</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Qualification</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
 <script>
     print();
-    </script>
+</script>
 </body>
 
 </html>

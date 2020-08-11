@@ -53,4 +53,14 @@ class RTReport extends Model
     {
        return $this->HasMany(interpretation::class);
     }
+
+      // this is a recommended way to declare event handlers
+      public static function boot() {
+        parent::boot();
+
+        static::deleting(function($report) { // before delete() method call this
+             $report->interpretations()->delete();
+             // do the rest of the cleanup...
+        });
+    }
 }

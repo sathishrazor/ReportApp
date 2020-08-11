@@ -16,4 +16,14 @@ class PickList extends Model
     {
        return $this->HasMany(Option::class);
     }
+
+      // this is a recommended way to declare event handlers
+      public static function boot() {
+        parent::boot();
+
+        static::deleting(function($picklist) { // before delete() method call this
+             $picklist->options()->delete();
+             // do the rest of the cleanup...
+        });
+    }
 }

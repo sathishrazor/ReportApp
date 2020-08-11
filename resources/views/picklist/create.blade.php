@@ -3,7 +3,7 @@
 
     <div class="container">
 
-                <form method="POST" action="{{ route('create_confirm') }}">
+                <form method="POST" action="/picklist">
                     @csrf
                     <h4>PickList Create</h4>
                     <div class="form-group row">

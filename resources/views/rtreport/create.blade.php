@@ -320,7 +320,6 @@
             </div>
         </div>
         <br />
-
         <div class="card">
             <div class="card-header">Interpretation Details</div>
 
@@ -382,6 +381,31 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Authority Details
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+
+                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <label>Inspected By</label>
+                        <input  name="inspected_by" value="{{old('inspected_by')}}"  type="text" class="form-control form-control-sm">
+                        @error('xray_volt_src')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <label>Authorised By</label>
+                        <input  name="authorised_by" value="{{old('authorised_by')}}"  type="text" class="form-control form-control-sm">
+                        @error('xray_volt_src')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
     </form>

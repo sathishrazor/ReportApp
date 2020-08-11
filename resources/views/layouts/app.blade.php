@@ -75,7 +75,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/rtreport">
+                                <a class="dropdown-item" href="{{ route('rtreport.index') }}">
                                     RT Report
                                 </a>
                             </div>
@@ -87,19 +87,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/picklist">
+                                    <a class="dropdown-item" href="{{ route('picklist.index') }}">
                                         PickList
                                     </a>
-                                    <a class="dropdown-item" href="/owners">
+                                    <a class="dropdown-item" href="{{ route('owners.index') }}">
                                         Owners
                                     </a>
-                                    <a class="dropdown-item" href="/clients">
+                                    <a class="dropdown-item" href="{{ route('clients.index') }}">
                                         Clients
                                     </a>
-                                    <a class="dropdown-item" href="/technicians">
+                                    <a class="dropdown-item" href="{{ route('technicians.index') }}">
                                         Technicians
                                     </a>
-                                    <a class="dropdown-item" href="/projects">
+                                    <a class="dropdown-item" href="{{ route('projects.index') }}">
                                         Projects
                                     </a>
                                 </div>
@@ -111,7 +111,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/users">
+                                    <a class="dropdown-item" href="users">
                                        <i class="fa fa-users"></i> Users
                                     </a>
 

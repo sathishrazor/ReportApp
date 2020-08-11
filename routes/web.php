@@ -21,21 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-/*
-|--------------------------------------------------------------------------
-| PickList Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('/picklist', 'PickListController@index');
-Route::get('/picklist/index', 'PickListController@index');
-Route::post('/picklist/create', 'PickListController@create_confirm')->name("create_confirm");
-Route::get('/picklist/create', 'PickListController@create');
-Route::post('/picklist/edit/{id}', 'PickListController@edit');
-Route::get('/picklist/edit/{id}', 'PickListController@edit');
-Route::post('/picklist/delete/{id}', 'PickListController@delete');
-Route::get('/picklist/delete/{id}', 'PickListController@delete');
-Route::get('/picklist/get/{id}', "PickListController@get");
-Route::post('/picklist/search',"PickListController@search")->name("PickList.search");
+
 /*
 |--------------------------------------------------------------------------
 | Profile Routes
@@ -47,6 +33,7 @@ Route::resource('Profile','ProfileController');
 | Profile Routes
 |--------------------------------------------------------------------------
 */
+Route::resource('picklist', 'PickListController');
 Route::resource('rtreport', 'RTReportController');
 Route::resource('clients', 'ClientsController');
 Route::resource('projects', 'ProjectsController');
@@ -63,3 +50,10 @@ Route::get('/datatable/clients/index','ClientsController@loadData')->name("clien
 Route::get('/datatable/projects/index','ProjectsController@loadData')->name("projects.get");
 Route::get('/datatable/technicians/index','TechniciansController@loadData')->name("technicians.get");
 Route::get('/datatable/picklist/index','PickListController@loadData')->name("picklist.get");
+/*
+|--------------------------------------------------------------------------
+| Form Helper Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/picklist/get/{id}', "PickListController@get");
+Route::post('/picklist/search',"PickListController@search")->name("PickList.search");

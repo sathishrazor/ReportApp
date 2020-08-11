@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Technician;
 use Illuminate\Http\Request;
 
-class TechniciansController extends Controller
+class EmployeesController extends Controller
 {
     public function index()
     {
-        return View("technicians.index");
+        return View("employees.index");
     }
 
     public function create()
     {
-        return View("technicians.create");
+        return View("employees.create");
     }
 
     public function store(Request $request)
@@ -35,21 +35,21 @@ class TechniciansController extends Controller
 
     public function show($id)
     {
-        return View("technicians.show");
+        return View("employees.show");
     }
 
     public function edit($id)
     {
-        return View("technicians.edit");
+        return View("employees.edit");
     }
 
     public function update($id)
     {
-        return View("technicians.index");
+        return View("employees.index");
     }
 
     public function destroy($id)
     {
-        return View("technicians.index");
+        return View("employees.index");
     }
 }
