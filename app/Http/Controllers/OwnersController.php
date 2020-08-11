@@ -39,19 +39,21 @@ class OwnersController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'entity_id' => 'required',
-            'address' => 'required'
+            'entity_id' =>'required|unique:owners',
+            'addressbook'=>'required'
         ]);
 
         $Owner = Owner::create( $request->all());
-        $Owner->save();
+        $Owner->created_by = auth()->user()->email;
+        $Owner->push();
 
         return  redirect()->action('OwnersController@index');
     }
 
     public function show($id)
     {
-        return View("owners.show");
+        $owner = Owner::findOrFail($id);
+        return View("owners.show",["record" => $owner]);
     }
 
     public function edit($id)

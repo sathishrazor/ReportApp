@@ -13,7 +13,7 @@ class RTReportUpdate extends Migration
      */
     public function up()
     {
-        Schema::table('interpretations', function (Blueprint $table) {
+        Schema::table('r_t_reports', function (Blueprint $table) {
             //
             $table->dropColumn("owner_name");
             $table->dropColumn("client_name");
@@ -27,28 +27,30 @@ class RTReportUpdate extends Migration
             $table->unsignedBigInteger('owner')->nullable();
             $table->unsignedBigInteger('client')->nullable();
             $table->unsignedBigInteger('project')->nullable();
-            $table->unsignedBigInteger('technician_1')->nullable();
-            $table->unsignedBigInteger('technician_2')->nullable();
 
             $table->index("inspected_by");
             $table->index("authorised_by");
             $table->index("owner");
             $table->index("client");
             $table->index("project");
-            $table->index("technician_1");
-            $table->index("technician_2");
 
         });
 
-        Schema::rename("technicinans", "employees");
+        Schema::table('r_t_reports',function($table){
+
+            $table->unsignedBigInteger('technician_1')->nullable();
+            $table->unsignedBigInteger('technician_2')->nullable();
+
+            $table->index("technician_1");
+            $table->index("technician_2");
+        });
+
+       Schema::rename("technicians", "employees");
 
         Schema::table('employees', function (Blueprint $table) {
 
-            $table->string("name");
-            $table->string("department")->nullable();
-            $table->string("created_by")->nullable();
-            $table->string("email")->nullable();
-            $table->string("entity")->nullable();
+
+            $table->string("entity_id")->nullable();
             $table->string("level")->nullable();
             $table->string("designation")->nullable();
             $table->string("location")->nullable();
