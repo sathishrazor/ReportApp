@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,8 +17,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','RecordHistories'
     ];
+
+    public function RecentHistory()
+    {
+        return $this->HasMany(RecentHistory::class);
+    }
+
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+
+    parent::boot();
+
+    static::deleting(function($user) {
+            $user->RecentHistory()->delete();
+            // do the rest of the cleanup...
+    });
+}
 
     /**
      * The attributes that should be hidden for arrays.

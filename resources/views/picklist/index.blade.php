@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">PickList
+                <h4 class="card-title"><span id="page_name">PickList</span>
                    <a class="btn btn-success ml-5" href="/picklist/create" id="createNewItem"> Create New List</a>
                  </h4>
              </div>
@@ -98,10 +98,7 @@
             }
         });
         }
-
     })
-
-
   });
 </script>
 @endsection

@@ -107,13 +107,6 @@
         </div>
     </form>
 </div>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<style>
-    .ui-autocomplete-loading {
-        background: white url("/img/ui-anim_basic_16x16.gif") right center no-repeat;
-    }
-</style>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{asset('js/form_auto_complete.js')}}"></script>
 <script>
     $(".add-btn").click(function(e) {
@@ -143,27 +136,21 @@
         $("tbody").append(tr);
         //enableAutoComplete();
     });
-
     $(".can-btn").click(function(e) {
         e.preventDefault();
     });
-
     $(document).on('click', 'tbody td', function(e) {
         $(this).find('input').removeAttr("readonly");
     })
-
     $(document).on('blur', 'tbody td', function(e) {
         $(this).find('input').attr("readonly", "readonly");
     })
-
     $(document).on('click', '.delrow', function(e) {
         e.preventDefault();
         $(this).parents('tr').remove();
         updateIndex();
     })
-
     var cache = {};
-
     function updateIndex() {
         $("tbody tr").each(function(i, el) {
             var row = $(el);

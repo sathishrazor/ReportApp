@@ -18,7 +18,12 @@ class interpretation extends Model
         "density",
         "discontinuity",
         "intp_size",
-        "result"
+        "result",
+        "interpret_dis",
+        "interpret_size",
+        "line_no",
+        "length_thick",
+        "thick"
     ];
 
     public function r_t_report()

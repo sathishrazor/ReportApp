@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">Owners
+                <h4  class="card-title"><span id="page_name">Owners</span>
                    <a class="btn btn-success ml-5" href="/owners/create" id="createNewItem"> New Owner</a>
                  </h4>
              </div>

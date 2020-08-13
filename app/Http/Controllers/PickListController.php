@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\MPTReport;
 use App\Option;
 use Yajra\Datatables\Datatables;
 use App\PickList;
+use App\RecentHistory;
+use App\RTReport;
 use Facade\FlareClient\Http\Exceptions\NotFound;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RedirectController;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PickListController extends Controller
@@ -83,6 +88,69 @@ class PickListController extends Controller
         }
     }
 
+    public function search_global(Request $req)
+    {
+
+        $q = $req->q;
+
+        if ($q == '') {
+            $res = PickList::where([
+                ['name', 'like', '%' . $q . '%']
+            ])->limit(10)->get();
+            return response()->json($res);
+        } else {
+
+            $res1 = PickList::select("name as label")->where([
+                ['name', 'like', '%' . $q . '%']]
+
+                )->limit(5)->get();
+
+                foreach($res1 as $r)
+                {
+                    $r->category = "PickList";
+                };
+
+            $res2 = RTReport::
+                where([['project_address', 'like', '%' . $q . '%']])
+                ->orWhere([['client_address', 'like', '%' . $q . '%']])
+                ->orWhere([['owner_address', 'like', '%' . $q . '%']])
+                ->limit(5)->get();
+
+                foreach($res2 as $r)
+                {
+                    $r->label = "RT_NO_{$r->id}";
+                    $r->category = "RTReport";
+                };
+
+            $res3 = MPTReport::
+                 where([['project_address', 'like', '%' . $q . '%']])
+                ->orWhere([['client_address', 'like', '%' . $q . '%']])
+                ->orWhere([['owner_address', 'like', '%' . $q . '%']])
+                ->limit(5)->get();
+
+                foreach($res3 as $r)
+                {
+                    $r->label = "RT_NO_{$r->id}";
+                    $r->category = "MPTReport";
+                };
+
+
+            $res4 = Client::select("name as label")->where([
+                ['name', 'like', '%' . $q . '%']
+                ])->limit(5)->get();
+
+                foreach($res4 as $r)
+                {
+
+                    $r->category = "Client";
+                };
+
+
+                return response()->json([$res1,$res2,$res3,$res4]);
+
+        }
+    }
+
 
     public function Details($req)
     {
@@ -146,5 +214,21 @@ class PickListController extends Controller
         $record = PickList::findOrFail($id);
         $record->delete();
         return response()->json(["result"=>"success"]);
+    }
+
+    public function record_history(Request $req)
+    {
+
+        if(auth()->user())
+        {
+            $id = auth()->user()->id;
+            $count = RecentHistory::where('user_id',$id)->count();
+            $deleteUs = RecentHistory::where('user_id',$id) ->orderBy('created_at', 'desc')->take($count)->skip(10)->get();
+            foreach($deleteUs as $deleteMe){
+                RecentHistory::where('id',$deleteMe->id)->delete();
+                    }
+            auth()->user()->RecentHistory()->create($req->all());
+
+        }
     }
 }

@@ -3,8 +3,8 @@
 <div class="card">
     <div class="card-header">
         <div class="col-md-12">
-            <h4 class="card-title"><span id="page_name">RT Report</span>
-                <a class="btn btn-success ml-5" href="/rtreport/create" id="createNewItem"> New RT Report</a>
+            <h4 class="card-title"><span id="page_name">Magnetic Pole Test Report</span>
+            <a class="btn btn-success ml-5" href="{{route("mptreport.create")}}" id="createNewItem"> New MPT Report</a>
             </h4>
         </div>
     </div>
@@ -45,7 +45,7 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('rtreport.datatable') }}",
+            ajax: "{{ route('mptreport.datatable') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
@@ -55,8 +55,8 @@
                     name: 'reference_code'
                 },
                 {
-                    data: 'createdby',
-                    name: 'createdby'
+                    data: 'created_by',
+                    name: 'created_by'
                 },
                 {
                     data: 'created_at',
@@ -83,7 +83,7 @@
                 "targets": 1,
                 "render":function(s,c,row)
                 {
-                    return `<a href="/rtreport/${row["id"]}">RT_NO_${row["id"]}</a>`
+                    return `<a href="/mptreport/${row["id"]}">MPT_NO_${row["id"]}</a>`
                 }
             }]
         });

@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">Clients
+                 <h4 class="card-title"><span id="page_name">Clients</span>
                  <a class="btn btn-success ml-5" href="{{route('clients.create')}}" id="createNewItem"> New Client</a>
                  </h4>
              </div>

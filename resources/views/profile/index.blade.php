@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-header">
              <div class="col-md-12">
-                 <h4 class="card-title">PT Reports
+                <h4 class="card-title"><span id="page_name">PT Reports</span>
                    <a class="btn btn-success ml-5" href="javascript:void(0)" id="createNewItem"> Create New Item</a>
                  </h4>
              </div>

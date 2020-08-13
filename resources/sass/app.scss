@@ -72,4 +72,15 @@ top:28px;
     padding-left: 15px;
 }
 
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
+}
+
+
+.ui-autocomplete-loading {
+    background: white url("/img/ui-anim_basic_16x16.gif") right center no-repeat;
+}
 

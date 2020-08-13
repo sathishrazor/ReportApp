@@ -30,11 +30,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('Profile','ProfileController');
 /*
 |----------------------------------------------------------------------------------------
-| Profile Routes
+| Modules Routes
 |----------------------------------------------------------------------------------------
 */
 Route::resource('picklist', 'PickListController');
 Route::resource('rtreport', 'RTReportController');
+Route::resource('mptreport', 'MPTReportsController');
 Route::resource('clients', 'ClientsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('owners', 'OwnersController');
@@ -45,6 +46,7 @@ Route::resource('employees', 'EmployeesController');
 |------------------------------------------------------------------------------------------
 */
 Route::get('datatable/rtreport/index','RTReportController@loadData')->name("rtreport.datatable");
+Route::get('datatable/mptreport/index','MPTReportsController@loadData')->name("mptreport.datatable");
 Route::get('/datatable/owners/index','OwnersController@loadData')->name("owners.datatable");
 Route::get('datatable/clients/index','ClientsController@loadData')->name("clients.datatable");
 Route::get('datatable/projects/index','ProjectsController@loadData')->name("projects.datatable");
@@ -57,6 +59,8 @@ Route::get('datatable/picklist/index','PickListController@loadData')->name("pick
 */
 Route::get('picklist/get/{id}', "PickListController@get");
 Route::post('picklist/search',"PickListController@search")->name("PickList.search");
+Route::post('userdata/history',"PickListController@record_history")->name("PickList.record_history");
+Route::post('app/search',"PickListController@search_global")->name("PickList.search_global");
 
 Route::get('form/owners',"OwnersController@get")->name("owners.get");
 Route::get('form/employees',"EmployeesController@get")->name("employees.get");
