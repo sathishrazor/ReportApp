@@ -3,8 +3,8 @@
 <div class="card">
     <div class="card-header">
         <div class="col-md-12">
-            <h4 class="card-title"><span id="page_name">Magnetic Pole Test Report</span>
-            <a class="btn btn-success ml-5" href="{{route("mptreport.create")}}" id="createNewItem"> New MPT Report</a>
+            <h4 class="card-title"><span id="page_name">ULTRASONIC TEST B Report</span>
+            <a class="btn btn-success ml-5" href="{{route("utbreport.create")}}" id="createNewItem"> New UTBReport</a>
             </h4>
         </div>
     </div>
@@ -45,7 +45,7 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('mptreport.datatable') }}",
+            ajax: "{{ route('utbreport.datatable') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
@@ -83,10 +83,28 @@
                 "targets": 1,
                 "render":function(s,c,row)
                 {
-                    return `<a href="/mptreport/${row["id"]}">MPT_NO_${row["id"]}</a>`
+                    return `<a href="/utbreport/${row["id"]}">UTB_NO_${row["id"]}</a>`
                 }
             }]
         });
+
+        $(document).on('click','.deleteItem',function(ev){
+        var data = table.row($(this).parents('tr')).data()
+        console.log(data);
+        var answer = confirm("Are you sure want to continue?");
+        if(answer)
+        {
+            $.ajax({
+            url: `/utbreport/${data.id}`,
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+                console.log("deleteres",result);
+                $('.data-table').DataTable().ajax.reload();
+            }
+        });
+        }
+    })
 
     });
 </script>

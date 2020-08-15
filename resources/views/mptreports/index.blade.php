@@ -41,7 +41,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
@@ -87,7 +86,23 @@
                 }
             }]
         });
-
+    $(document).on('click','.deleteItem',function(ev){
+      var data = table.row($(this).parents('tr')).data()
+        console.log(data);
+        var answer = confirm("Are you sure want to continue?");
+        if(answer)
+        {
+            $.ajax({
+            url: `/mptreport/${data.id}`,
+            type: 'DELETE',
+            success: function(result) {
+                // Do something with the result
+                console.log("deleteres",result);
+                $('.data-table').DataTable().ajax.reload();
+            }
+        });
+        }
+    })
     });
 </script>
 @endsection

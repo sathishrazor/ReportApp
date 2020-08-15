@@ -19,7 +19,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+/*
+|----------------------------------------------------------------------------------------
+| Home Routes
+|----------------------------------------------------------------------------------------
+*/
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*
@@ -33,9 +37,15 @@ Route::resource('Profile','ProfileController');
 | Modules Routes
 |----------------------------------------------------------------------------------------
 */
-Route::resource('picklist', 'PickListController');
+
 Route::resource('rtreport', 'RTReportController');
 Route::resource('mptreport', 'MPTReportsController');
+Route::resource('lptreport', 'LPTReportController');
+Route::resource('utareport', 'UTAReportController');
+Route::resource('utbreport', 'UTBReportController');
+Route::resource('utcreport', 'UTCReportController');
+Route::resource('utgtreport', 'UTGTReportController');
+Route::resource('picklist', 'PickListController');
 Route::resource('clients', 'ClientsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('owners', 'OwnersController');
@@ -46,7 +56,14 @@ Route::resource('employees', 'EmployeesController');
 |------------------------------------------------------------------------------------------
 */
 Route::get('datatable/rtreport/index','RTReportController@loadData')->name("rtreport.datatable");
-Route::get('datatable/mptreport/index','MPTReportsController@loadData')->name("mptreport.datatable");
+
+Route::get('datatable/mptreport/index', 'MPTReportsController@loadData')->name("mptreport.datatable");
+Route::get('datatable/lptreport/index', 'LPTReportController@loadData')->name("lptreport.datatable");
+Route::get('datatable/utareport/index', 'UTAReportController@loadData')->name("utareport.datatable");
+Route::get('datatable/utbreport/index', 'UTBReportController@loadData')->name("utbreport.datatable");
+Route::get('datatable/utcreport/index', 'UTCReportController@loadData')->name("utcreport.datatable");
+Route::get('datatable/utgtreport/index','UTGTReportController@loadData')->name("utgtreport.datatable");
+
 Route::get('/datatable/owners/index','OwnersController@loadData')->name("owners.datatable");
 Route::get('datatable/clients/index','ClientsController@loadData')->name("clients.datatable");
 Route::get('datatable/projects/index','ProjectsController@loadData')->name("projects.datatable");

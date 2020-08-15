@@ -10993,3 +10993,8 @@ a.text-dark:focus {
   background: white url("/img/ui-anim_basic_16x16.gif") right center no-repeat;
 }
 
+.text-vertical {
+  -ms-writing-mode: tb-rl;
+      writing-mode: tb-rl;
+}
+

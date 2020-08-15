@@ -98,19 +98,19 @@
                                 <a class="dropdown-item" href="{{ route('mptreport.index') }}">
                                     <i class="fa fa-magnet" aria-hidden="true"></i> MPT Report
                                 </a>
-                                <a class="dropdown-item" href="{{ route('mptreport.index') }}">
+                                <a class="dropdown-item" href="{{ route('lptreport.index') }}">
                                     <i class="fa fa-tint" aria-hidden="true"></i> LPT Report
                                 </a>
-                                <a class="dropdown-item" href="{{ route('mptreport.index') }}">
+                                <a class="dropdown-item" href="{{ route('utareport.index') }}">
                                     <i class="fa fa-ravelry" aria-hidden="true"></i> UTA Report(ASME)
                                 </a>
-                                <a class="dropdown-item" href="{{ route('mptreport.index') }}">
+                                <a class="dropdown-item" href="{{ route('utbreport.index') }}">
                                     <i class="fa fa-ravelry" aria-hidden="true"></i> UTB Report(AWS)
                                 </a>
-                                <a class="dropdown-item" href="{{ route('mptreport.index') }}">
+                                <a class="dropdown-item" href="{{ route('utcreport.index') }}">
                                     <i class="fa fa-ravelry" aria-hidden="true"></i> UTC Report(Lamination)
                                 </a>
-                                <a class="dropdown-item" href="{{ route('mptreport.index') }}">
+                                <a class="dropdown-item" href="{{ route('utgtreport.index') }}">
                                     <i class="fa fa-ravelry" aria-hidden="true"></i> UTGT Report(Thickness Gauge Test)
                                 </a>
 

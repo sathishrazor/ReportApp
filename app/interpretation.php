@@ -23,7 +23,9 @@ class interpretation extends Model
         "interpret_size",
         "line_no",
         "length_thick",
-        "thick"
+        "thick",
+        "drawing_no",
+        "defect_no"
     ];
 
     public function r_t_report()

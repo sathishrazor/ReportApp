@@ -12,35 +12,31 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-
                     <a href="{{route('rtreport.index')}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-eercast" aria-hidden="true"></i>
                         <p class="tile-content">Radiographic Test Report</p>
                     </a>
-
-                <a href="{{route("mptreport.index")}}" class="col-md-2 tile-card d-flex">
+                   <a href="{{route("mptreport.index")}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-magnet" aria-hidden="true"></i>
                         <p class="tile-content">Magnetic Pole Test Report</p>
                     </a>
-
-                    <a href="#" class="col-md-2 tile-card d-flex">
+                    <a href="{{route("lptreport.index")}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-tint" aria-hidden="true"></i>
                         <p class="tile-content"> Liquid Penetration Test Report</p>
                     </a>
-                    <a href="#" class="col-md-2 tile-card d-flex">
+                    <a href="{{route("utareport.index")}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-ravelry" aria-hidden="true"></i>
                         <p class="tile-content">Ultrasonic Test Report A(AWS)</p>
                     </a>
-                    <a href="#" class="col-md-2 tile-card d-flex">
+                    <a href="{{route("utbreport.index")}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-ravelry" aria-hidden="true"></i>
                         <p class="tile-content">Ultrasonic Test Report B(ASME)</p>
                     </a>
-                    <a href="#" class="col-md-2 tile-card d-flex">
+                    <a href="{{route("utcreport.index")}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-ravelry" aria-hidden="true"></i>
                         <p class="tile-content">Ultrasonic Test Report C(Lamination)</p>
                     </a>
-                    <a href="#" class="col-md-2 tile-card d-flex">
+                    <a href="{{route("utgtreport.index")}}" class="col-md-2 tile-card d-flex">
                         <i class="fa fa-ravelry" aria-hidden="true"></i>
                         <p class="tile-content">Ultrasonic Thickness Gauge Report</p>
                     </a>

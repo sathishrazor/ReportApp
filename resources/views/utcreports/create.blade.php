@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-<form method="POST" enctype="multipart/form-data" action="{{route("mptreport.store")}}">
+<form method="POST" enctype="multipart/form-data" action="{{route("utcreport.store")}}">
         @csrf
-        <h4>Create MPT Report</h4>
+        <h4>Create Ultrasonic Testing C (Lamination) Report</h4>
         <div class="form-row">
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Create</button>
@@ -165,16 +165,18 @@
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Weld Process</label>
-                        <input name="weld_process"  value="{{old('weld_process')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Weld Process">
-                        @error('weld_process')
+                        <label>Drawing No.</label>
+                        <input name="drawing_no"  value="{{old('drawing_no')}}"  type="text"
+                         class="form-control form-control-sm autocomplete" dropdown="drawing_no">
+                        @error('drawing_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Weld Reinforcement</label>
-                        <input  name="weld_reinforcement"  value="{{old('weld_reinforcement')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Weld Reinforcement">
-                        @error('weld_reinforcement')
+                        <label>Line No.</label>
+                        <input  name="line_no"  value="{{old('line_no')}}" type="text"
+                         class="form-control form-control-sm autocomplete" dropdown="line_no">
+                        @error('line_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -184,144 +186,91 @@
         <br />
         <div class="card">
             <div class="card-header">Method Details</div>
-
             <div class="card-body">
                 <div class="form-row">
-
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Type of Equipment</label>
                         <input  name="type_of_equipment" value="{{old('type_of_equipment')}}"  type="text"
-                        class="form-control form-control-sm autocomplete" dropdown='X-Ray Voltage/ Source'>
+                        class="form-control form-control-sm autocomplete" dropdown='type_of_equipment'>
                         @error('type_of_equipment')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Current </label>
-                        <input name="type_of_current"  value="{{old('type_of_current')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="X-Ray / Source">
-                        @error('type_of_current')
+                        <label>UT Equipment Sr.No. </label>
+                        <input name="ut_equipment_sr_no"  value="{{old('ut_equipment_sr_no')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="ut_equipment_sr_no">
+                        @error('ut_equipment_sr_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Chemical Manufacturer</label>
-                        <input name="chemical_manufacture"   value="{{old('chemical_manufacture')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="Fim Manufacturer">
-                        @error('chemical_manufacture')
+                        <label>Probe Type</label>
+                        <input name="probe_type"   value="{{old('probe_type')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="probe_type">
+                        @error('probe_type')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Cleaner Batch No</label>
-                        <input  name="cleaner_batch_no"   value="{{old('cleaner_batch_no')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="Film Type">
-                        @error('cleaner_batch_no')
+                        <label>Probe Angle</label>
+                        <input  name="probe_angle"   value="{{old('probe_angle')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="probe_angle">
+                        @error('probe_angle')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Contrast Batch No</label>
-                        <input name="contrast_batch_no"  value="{{old('contrast_batch_no')}}"
-                          type="text" class="form-control form-control-sm autocomplete" dropdown="Films in Cassette">
-                        @error('contrast_batch_no')
+                        <label>Probe Frequency</label>
+                        <input name="probe_frequency  value="{{old('probe_frequency')}}"
+                          type="text" class="form-control form-control-sm autocomplete" dropdown="probe_frequency">
+                        @error('probe_frequency')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Black Ink Batch No</label>
-                        <input name="black_ink_batch_no"  value="{{old('black_ink_batch_no')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Technique">
-                        @error('black_ink_batch_no')
+                        <label>Probe Size</label>
+                        <input name="probe_size"  value="{{old('probe_size')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="probe_size">
+                        @error('probe_size')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>White Light Level</label>
-                        <input name="white_light_level"  value="{{old('white_light_level')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="SOD">
+                        <label>Probe Sr.No.</label>
+                        <input name="probe_sr_no"  value="{{old('probe_sr_no')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="probe_sr_no">
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Black Light Level</label>
-                        <input name="black_light_level"   value="{{old('black_light_level')}}"   type="text" class="form-control form-control-sm" dropdown="OFD">
+                        <label>Stop Wedge Sr.No.</label>
+                        <input name="stop_wedge_sr_no"   value="{{old('stop_wedge_sr_no')}}"   type="text" class="form-control form-control-sm" dropdown="stop_wedge_sr_no">
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Light Meter Sr.No</label>
-                        <input name="light_meter_sr_no"  value="{{old('light_meter_sr_no')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="IQI">
-                        @error('light_meter_sr_no')
+                        <label>Couplant</label>
+                        <input name="couplant"  value="{{old('couplant')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="couplant">
+                        @error('couplant')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Particle</label>
-                        <input name="type_of_particle" value="{{old('type_of_particle')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Sensitivity">
-                        @error('type_of_particle')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Particle Medium</label>
-                        <input  name="particle_medium"  value="{{old('particle_medium')}}"
-                          type="text" class="form-control form-control-sm autocomplete" dropdown="Ug">
-                        @error('particle_medium')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Magnetism</label>
-                        <input name="type_of_magnetism"   value="{{old('type_of_magnetism')}}"
-                          type="text" class="form-control form-control-sm autocomplete" dropdown="Lead Screen Thickness">
-                        @error('type_of_magnetism')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Configuration</label>
-                        <input name="configuration"   value="{{old('configuration')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="Configuration">
-                        @error('configuration')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Pole Spacing</label>
-                        <input name="pole_spacing"   value="{{old('pole_spacing')}}"  type="text" class="form-control form-control-sm">
-                        @error('pole_spacing')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Lifting Capacity</label>
-                        <select name="lifting_capacity"  class="form-control form-control-sm select" record="employees"></select>
-                        @error('lifting_capacity')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+
                 </div>
             </div>
         </div>
         <br />
         <div class="card">
             <div class="card-header">Interpretation Details</div>
-
             <div class="card-body card-table">
-
                 <table sublist-attr="interpretations" class="table table-sm table-bordered">
                     <thead class="text-center">
 
                         <tr>
-                            <th rowspan="2">SNo.</th>
-                            <th rowspan="2">Drawing No</th>
-                            <th rowspan="2">Line No.</th>
-                            <th rowspan="2">Joint No.</th>
-                            <th rowspan="2">Size</th>
-                            <th rowspan="2">Length/Thick</th>
-                            <th rowspan="2">Welder ID</th>
+                            <th rowspan="2">Sr</th>
+                            <th rowspan="2">Defect No.</th>
                             <th colspan="2">Interpretation</th>
                             <th rowspan="2">Result</th>
                             <th rowspan="2">Action</th>
@@ -336,17 +285,12 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td>&nbsp;</td>
-                            <td><input name-attr="drawing_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="line_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="joint_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="size" class="form-control form-control-sm"/></td>
-                            <td><input name-attr="length_thick" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="weld" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="interpret_dis" class="form-control form-control-sm"/></td>
+                            <td></td>
+                            <td><input name-attr="defect_no" class="form-control form-control-sm" /></td>
                             <td><input name-attr="interpret_size" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="result" class="form-control form-control-sm"/></td>
-                            <td>&nbsp;</td>
+                            <td><input name-attr="interpret_size" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="result" class="form-control form-control-sm" /></td>
+                           <td>&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -357,10 +301,18 @@
                                 </div>
                             </td>
                             <td></td>
-                            <td colspan="10">&nbsp;</td>
+                            <td colspan="3">&nbsp;</td>
                         </tr>
                     </tfoot>
                 </table>
+                <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <label>Remarks/Restricted Areas(if any).</label>
+                    <input name="remarks" value="{{old('remarks')}}" type="text"
+                        class="form-control form-control-sm">
+                    @error('remarks')
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
         </div>
 

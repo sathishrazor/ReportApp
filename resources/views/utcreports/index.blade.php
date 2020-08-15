@@ -3,8 +3,8 @@
 <div class="card">
     <div class="card-header">
         <div class="col-md-12">
-            <h4 class="card-title"><span id="page_name">Magnetic Pole Test Report</span>
-            <a class="btn btn-success ml-5" href="{{route("mptreport.create")}}" id="createNewItem"> New MPT Report</a>
+            <h4 class="card-title"><span id="page_name">UTRASONIC TEST C Report</span>
+            <a class="btn btn-success ml-5" href="{{route("utcreport.create")}}" id="createNewItem"> New UTCReport</a>
             </h4>
         </div>
     </div>
@@ -45,7 +45,7 @@
         var table = $('.data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('mptreport.datatable') }}",
+            ajax: "{{ route('utcreport.datatable') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
@@ -83,7 +83,7 @@
                 "targets": 1,
                 "render":function(s,c,row)
                 {
-                    return `<a href="/mptreport/${row["id"]}">MPT_NO_${row["id"]}</a>`
+                    return `<a href="/utcreport/${row["id"]}">UTC_NO_${row["id"]}</a>`
                 }
             }]
         });

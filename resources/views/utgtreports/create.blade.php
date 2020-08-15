@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-<form method="POST" enctype="multipart/form-data" action="{{route("mptreport.store")}}">
+<form method="POST" enctype="multipart/form-data" action="{{route("utgtreport.store")}}">
         @csrf
-        <h4>Create MPT Report</h4>
+        <h4>Create UltraSonic Thickness Gauge Test UTGT Report</h4>
         <div class="form-row">
             <div class="btn-group">
                 <button type="submit" class="btn btn-success">Create</button>
@@ -165,16 +165,18 @@
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Weld Process</label>
-                        <input name="weld_process"  value="{{old('weld_process')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Weld Process">
-                        @error('weld_process')
+                        <label>Drawing No.</label>
+                        <input name="drawing_no"  value="{{old('drawing_no')}}"
+                        type="text" class="form-control form-control-sm autocomplete" dropdown="drawing_no">
+                        @error('drawing_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        <label>Weld Reinforcement</label>
-                        <input  name="weld_reinforcement"  value="{{old('weld_reinforcement')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Weld Reinforcement">
-                        @error('weld_reinforcement')
+                        <label>Line No.</label>
+                        <input  name="line_no"  value="{{old('line_no')}}" type="text"
+                        class="form-control form-control-sm autocomplete" dropdown="line_no">
+                        @error('line_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -184,124 +186,82 @@
         <br />
         <div class="card">
             <div class="card-header">Method Details</div>
-
             <div class="card-body">
                 <div class="form-row">
-
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Equipment</label>
-                        <input  name="type_of_equipment" value="{{old('type_of_equipment')}}"  type="text"
-                        class="form-control form-control-sm autocomplete" dropdown='X-Ray Voltage/ Source'>
-                        @error('type_of_equipment')
+                        <label>UTG Equipment</label>
+                        <input  name="utg_equipment" value="{{old('utg_equipment')}}"  type="text"
+                        class="form-control form-control-sm autocomplete" dropdown='utg_equipment'>
+                        @error('utg_equipment')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Current </label>
-                        <input name="type_of_current"  value="{{old('type_of_current')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="X-Ray / Source">
-                        @error('type_of_current')
+                        <label>UT Equipment Sr.No. </label>
+                        <input name="ut_equipment_sr_no"  value="{{old('ut_equipment_sr_no')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="ut_equipment_sr_no">
+                        @error('ut_equipment_sr_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Chemical Manufacturer</label>
-                        <input name="chemical_manufacture"   value="{{old('chemical_manufacture')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="Fim Manufacturer">
-                        @error('chemical_manufacture')
+                        <label>Probe Type</label>
+                        <input name="probe_type"   value="{{old('probe_type')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="probe_type">
+                        @error('probe_type')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Cleaner Batch No</label>
-                        <input  name="cleaner_batch_no"   value="{{old('cleaner_batch_no')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="Film Type">
-                        @error('cleaner_batch_no')
+                        <label>Probe Angle</label>
+                        <input  name="probe_angle"   value="{{old('probe_angle')}}"
+                         type="text" class="form-control form-control-sm autocomplete" dropdown="probe_angle">
+                        @error('probe_angle')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Contrast Batch No</label>
-                        <input name="contrast_batch_no"  value="{{old('contrast_batch_no')}}"
-                          type="text" class="form-control form-control-sm autocomplete" dropdown="Films in Cassette">
-                        @error('contrast_batch_no')
+                        <label>Probe Frequency</label>
+                        <input name="probe_frequency  value="{{old('probe_frequency')}}"
+                          type="text" class="form-control form-control-sm autocomplete" dropdown="probe_frequency">
+                        @error('probe_frequency')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Black Ink Batch No</label>
-                        <input name="black_ink_batch_no"  value="{{old('black_ink_batch_no')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="Technique">
-                        @error('black_ink_batch_no')
+                        <label>Probe Size</label>
+                        <input name="probe_size"  value="{{old('probe_size')}}" type="text"
+                        class="form-control form-control-sm autocomplete" dropdown="probe_size">
+                        @error('probe_size')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>White Light Level</label>
-                        <input name="white_light_level"  value="{{old('white_light_level')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="SOD">
+                        <label>Probe Sr.No.</label>
+                        <input name="probe_sr_no"  value="{{old('probe_sr_no')}}"  type="text"
+                         class="form-control form-control-sm autocomplete" dropdown="probe_sr_no">
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Black Light Level</label>
-                        <input name="black_light_level"   value="{{old('black_light_level')}}"   type="text" class="form-control form-control-sm" dropdown="OFD">
+                        <label>Stop Wedge Sr.No.</label>
+                        <input name="stop_wedge_sr_no"   value="{{old('stop_wedge_sr_no')}}"   type="text"
+                        class="form-control form-control-sm" dropdown="stop_wedge_sr_no">
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Light Meter Sr.No</label>
-                        <input name="light_meter_sr_no"  value="{{old('light_meter_sr_no')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="IQI">
-                        @error('light_meter_sr_no')
+                        <label>Couplant</label>
+                        <input name="couplant"  value="{{old('couplant')}}" type="text"
+                        class="form-control form-control-sm autocomplete" dropdown="couplant">
+                        @error('couplant')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Particle</label>
-                        <input name="type_of_particle" value="{{old('type_of_particle')}}"  type="text" class="form-control form-control-sm autocomplete" dropdown="Sensitivity">
-                        @error('type_of_particle')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Particle Medium</label>
-                        <input  name="particle_medium"  value="{{old('particle_medium')}}"
-                          type="text" class="form-control form-control-sm autocomplete" dropdown="Ug">
-                        @error('particle_medium')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Magnetism</label>
-                        <input name="type_of_magnetism"   value="{{old('type_of_magnetism')}}"
-                          type="text" class="form-control form-control-sm autocomplete" dropdown="Lead Screen Thickness">
-                        @error('type_of_magnetism')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Configuration</label>
-                        <input name="configuration"   value="{{old('configuration')}}"
-                         type="text" class="form-control form-control-sm autocomplete" dropdown="Configuration">
-                        @error('configuration')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Pole Spacing</label>
-                        <input name="pole_spacing"   value="{{old('pole_spacing')}}"  type="text" class="form-control form-control-sm">
-                        @error('pole_spacing')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Lifting Capacity</label>
-                        <select name="lifting_capacity"  class="form-control form-control-sm select" record="employees"></select>
-                        @error('lifting_capacity')
-                        <small class="form-text text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -316,19 +276,25 @@
 
                         <tr>
                             <th rowspan="2">SNo.</th>
-                            <th rowspan="2">Drawing No</th>
-                            <th rowspan="2">Line No.</th>
-                            <th rowspan="2">Joint No.</th>
-                            <th rowspan="2">Size</th>
+                            <th rowspan="2">Equipment</th>
+                            <th rowspan="2">Location</th>
+                            <th rowspan="2">Base Line.<br/>Reading(mm)</th>
+                            <th colspan="9">Remaining Thickness(mm)</th>
                             <th rowspan="2">Length/Thick</th>
-                            <th rowspan="2">Welder ID</th>
-                            <th colspan="2">Interpretation</th>
+                            <th rowspan="2">Corrosion<br/>Allowance(mm)</th>
                             <th rowspan="2">Result</th>
                             <th rowspan="2">Action</th>
                         </tr>
                         <tr>
-                            <th>Discontinuity</th>
-                            <th>Size</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>Minimum</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -337,15 +303,21 @@
                     <tfoot>
                         <tr>
                             <td>&nbsp;</td>
-                            <td><input name-attr="drawing_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="line_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="joint_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="size" class="form-control form-control-sm"/></td>
-                            <td><input name-attr="length_thick" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="weld" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="interpret_dis" class="form-control form-control-sm"/></td>
-                            <td><input name-attr="interpret_size" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="result" class="form-control form-control-sm"/></td>
+                            <td><input name-attr="equipment" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="location" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="base_line_reading" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_1" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_2" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_3" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_4" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_5" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_6" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_7" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="rem_thick_8" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="minimum" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="length" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="corr_allowence" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="result" class="form-control form-control-sm" /></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
@@ -357,10 +329,18 @@
                                 </div>
                             </td>
                             <td></td>
-                            <td colspan="10">&nbsp;</td>
+                            <td colspan="14">&nbsp;</td>
                         </tr>
                     </tfoot>
                 </table>
+                <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <label>Remarks/Restricted Areas(if any).</label>
+                    <input name="remarks" value="{{old('remarks')}}" type="text"
+                        class="form-control form-control-sm">
+                    @error('remarks')
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
         </div>
 
@@ -374,7 +354,7 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Photo 1</label>
-                        <input id='photo_1' name="photo_1" type="file"  class="form-control-file">
+                        <input id='photo_1' name="photo_1" type="file" accept="image/*"  class="form-control-file">
                         @error('photo_1')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -382,7 +362,7 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Photo 2</label>
-                        <input id='photo_2' name="photo_2" type="file" class="form-control-file">
+                        <input id='photo_2' name="photo_2" type="file" accept="image/*" class="form-control-file">
                         @error('photo_2')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -390,7 +370,7 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Drawing</label>
-                        <input id='drawing' name="drawing" type="file" class="form-control-file">
+                        <input id='drawing' name="drawing" type="file" accept="image/*" class="form-control-file">
                         @error('drawing')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
