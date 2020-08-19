@@ -28,9 +28,7 @@ class InterpretUpdate extends Migration
             $table->index("u_t_g_t_report_id");
         });
 
-        Schema::table('interpretations', function (Blueprint $table) {
-            $table->string("defect_no")->nullable();
-        });
+
     }
 
     /**

@@ -351,7 +351,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="min-height: 100px">
+            <tr style="padding:30px">
                 <td>Signature</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

@@ -38,9 +38,10 @@ class LPTReport extends Model
         "surface_condition",
         "surface_temperature",
         "weld_process",
-        "weld_reinforcement",
+        "weld_preparation",
         "type_of_penetrant",
         "method_of_removal",
+
         "excess_penetrant_removal",
         "cleaner_batch_no",
         "penetrant_batch_no",

@@ -30,8 +30,8 @@ class UTCReport extends Model
               "grade",
               "surface_condition",
               "surface_temperature",
-              "weld_process",
-              "weld_preparation",
+              "drawing_no",
+              "line_no",
 
                //method details
               "ut_equipment",

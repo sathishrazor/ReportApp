@@ -62,7 +62,7 @@
         <tbody>
             <tr>
                 <td>
-                    MAGNETIC POLE TEST REPORT
+                   ULTRASONIC TEST REPORT
                 </td>
                 <td>
                     Date of Examination
@@ -74,7 +74,7 @@
                     Report No
                 </td>
                 <td>
-                    MPT_NO_{{$record->id}}
+                    UTB_NO_{{$record->id}}
                 </td>
             </tr>
         </tbody>
@@ -84,7 +84,7 @@
         <tr>
             <td>Owner Name</td>
             <td>
-            @if ($record->owner>0)
+            @if ($record->owner_ref)
                     {{ $record->owner_ref->name}}
                     @endif
             </td>
@@ -95,7 +95,7 @@
             <td>Client Name</td>
             <td>
 
-            @if ($record->client>0)
+            @if ($record->client_ref)
                     {{ $record->client_ref->name}}
                     @endif
             </td>
@@ -106,7 +106,7 @@
             <td>Project Name</td>
             <td>
 
-                @if ($record->project>0)
+                @if ($record->project_ref)
                     {{ $record->project_ref->name}}
                     @endif
             </td>
@@ -117,7 +117,7 @@
             <td>Requested By</td>
             <td>{{$record->requested_by}}</td>
             <td>Request No</td>
-            <td>{{$record->requested_no}}</td>
+            <td>{{$record->request_no}}</td>
         </tr>
         <tr>
             <td>PO. No.</td>
@@ -156,121 +156,122 @@
         <tr>
             <td>Weld Process</td>
             <td>{{$record->weld_process}}</td>
-            <td>Weld Reinforcement.</td>
-            <td>{{$record->weld_reinforcement}}</td>
+            <td>Weld Preparation.</td>
+            <td>{{$record->weld_preparation}}</td>
         </tr>
     </table>
+
+
 
     <p><b>Method Details</b></p>
     <table>
         <tr>
-            <td>Type of Equipment</td>
-            <td>{{$record->type_of_equipment}}</td>
-            <td>Type of Current</td>
-            <td>{{$record->type_of_current}}</td>
-            <td>Chemical Manufacturer</td>
-            <td>{{$record->chemical_manufacture}}</td>
-
+            <td>UT Equipment</td>
+            <td>{{$record->ut_equipment}}</td>
+            <td>UT Equipment Sr.No.</td>
+            <td>{{$record->ut_equipment_sr_no}}</td>
+            <td>Type of Scan</td>
+            <td>{{$record->type_of_scan}}</td>
         </tr>
 
         <tr>
-            <td>Cleaner Batch No.</td>
-            <td>{{$record->cleaner_batch_no}}</td>
-            <td>Contrast Batch No.</td>
-            <td>{{$record->contrast_batch_no}}</td>
-            <td>Black Ink Batch No.</td>
-            <td>{{$record->black_ink_batch_no}}</td>
-
+            <td>Method of Test.</td>
+            <td>{{$record->method_of_test}}</td>
+            <td>Cable Type.</td>
+            <td>{{$record->cable_type}}</td>
+            <td>Cable Length.</td>
+            <td>{{$record->cable_length}}</td>
         </tr>
 
         <tr>
-            <td>Weight Light Level</td>
-            <td>{{$record->white_light_level}}</td>
-            <td>Black Light Level</td>
-            <td>{{$record->black_light_level}}</td>
-            <td>Light Meter Sr.No.</td>
-            <td>{{$record->light_meter_sr_no}}</td>
-
+            <td>V1 Block Sr.No.</td>
+            <td>{{$record->v1_block_sr_no}}</td>
+            <td>V2 Block Sr.No.</td>
+            <td>{{$record->v2_block_sr_no}}</td>
+            <td>Cal.Block Sr.No.</td>
+            <td>{{$record->cal_block_sr_no}}</td>
         </tr>
         <tr>
-            <td>Type of Particle</td>
-            <td>{{$record->type_of_particle}}</td>
-            <td>Particle Medium</td>
-            <td>{{$record->particle_medium}}</td>
-            <td>Type of Magnetism</td>
-            <td>{{$record->type_of_magnetism}}</td>
-
+            <td>Couplant</td>
+            <td>{{$record->couplant}}</td>
+            <td>Thickness</td>
+            <td>{{$record->thickness}}</td>
+            <td>Weld Joint No.</td>
+            <td>{{$record->weld_joint_no}}</td>
         </tr>
-        <tr>
-            <td>Configuration</td>
-            <td>{{$record->configuration}}</td>
-            <td>Pole Spacing</td>
-            <td>{{$record->pole_spacing}}</td>
-            <td>Lifting Capacity</td>
-            <td>{{$record->lifting_capacity}}</td>
-
-        </tr>
-
     </table>
 
 
     <p><b>Interpretation Details</b></p>
     <table>
-        <thead>
+        <thead class="text-center">
             <tr>
-                <th rowspan="2">SNo.</th>
-                <th rowspan="2">Drawing No.</th>
-                <th rowspan="2">Line No.</th>
-                <th rowspan="2">Joint No.</th>
-                <th rowspan="2">Size</th>
-                <th rowspan="2">Length/Thick</th>
-                <th rowspan="2">Welder ID</th>
-                <th colspan="2">Interpretation</th>
-                <th rowspan="2">Result</th>
+                <th class="text-vertical" rowspan="3">Ind. <br> No.</th>
+                <th class="text-vertical" rowspan="3">Probe <br> Sr.No</th>
+                <th class="text-vertical" rowspan="3">Probe <br> Size(mm)</th>
+                <th class="text-vertical" rowspan="3">Frequency<br>(MHz)</th>
+                <th class="text-vertical" rowspan="3">Transducer<br> Angle(deg)</th>
+                <th class="text-vertical" rowspan="3">From Face</th>
+                <th class="text-vertical" rowspan="3">Leg</th>
+
+                <th colspan="4">Decibels</th>
+                <th colspan="5">Discontinuity</th>
+
+                <th rowspan="3" class="text-vertical">Discont.</th>
+                <th rowspan="3" class="text-vertical">Result</th>
+
             </tr>
             <tr>
-                <th>Discontinuity</th>
-                <th>Size</th>
+                <th class="text-vertical">Indication <br />Level(dB) </th>
+                <th class="text-vertical">Reference <br />Level(dB) </th>
+                <th class="text-vertical">Attenuation <br />Factor </th>
+                <th class="text-vertical">Indication <br />Ratio </th>
+                <th rowspan="2" class="text-vertical">Length <br>(mm)</td>
+                <th rowspan="2" class="text-vertical">Angular Distance<br>(sound path)</th>
+                <th rowspan="2" class="text-vertical">Depth from A <br>surface(mm)</th>
+                <th colspan="2">Distance <br>(mm)</th>
+
+            </tr>
+            <tr>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+                <th>d</th>
+                <th>From <br>x</th>
+                <th>From <br>y</th>
             </tr>
         </thead>
         <tbody>
 
             @foreach ($record->interpretations as $item)
             <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$item->drawing_no}}</td>
-                <td>{{$item->joint_no}}</td>
-                <td>{{$item->line_no}}</td>
-                <td>{{$item->size}}</td>
-                <td>{{$item->length_thick}}</td>
-                <td>{{$item->weld}}</td>
-                <td>{{$item->interpret_dis}}</td>
-                <td>{{$item->interpret_size}}</td>
-                <td>{{$item->result}}</td>
+                <tr>
+                    <td>{{$item->indication_no}}</td>
+                    <td>{{$item->probe_sr_no}}</td>
+                    <td>{{$item->probe_size}}</td>
+                    <td>{{$item->frequency}}</td>
+                    <td>{{$item->transducer_angle}}</td>
+                    <td>{{$item->from_face}}</td>
+                    <td>{{$item->leg}}</td>
+                    <td>{{$item->indication_level_a}}</td>
+                    <td>{{$item->reference_level_b}}</td>
+                    <td>{{$item->attenuation_factor_c}}</td>
+                    <td>{{$item->indication_ratio_d}}</td>
+                    <td>{{$item->length}}</td>
+                    <td>{{$item->angular_distance}}</td>
+                    <td>{{$item->depth_from_surface}}</td>
+                    <td>{{$item->distance_from_x}}</td>
+                    <td>{{$item->distance_from_y}}</td>
+                    <td>{{$item->discontinuity}}</td>
+                    <td>{{$item->result}}</td>
+                </tr>
             </tr>
             @endforeach
 
-            <tr>
-                <td class="txt-right" colspan="9">
-                    Total Joint
-                </td>
-                <td>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td class="txt-right" colspan="9">
-                    Total Diameter(in)
-                </td>
-                <td>
-
-                </td>
-            </tr>
 
             <tr>
                 <td>Remarks</td>
-                <td colspan="9"></td>
+                <td colspan="17"></td>
             </tr>
         </tbody>
     </table>
@@ -348,9 +349,10 @@
                 <td>Owner/Third Party</td>
             </tr>
         </thead>
+
         <tbody>
-            <tr style="min-height: 100px">
-                <td>Signature</td>
+            <tr>
+                <td style="padding:30px">Signature</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -361,40 +363,45 @@
                 <td>Name</td>
                 <td>
 
-                    @if ($record->inspected_by>0)
+                    @if ($record->inspected_by_ref)
                     {{ $record->inspected_by_ref->name}}
                     @endif
                 </td>
                 <td>
 
-                    @if ($record->authorised_by>0)
+                    @if ($record->authorised_by_ref)
                     {{ $record->authorised_by_ref->name}}
                     @endif
 
                 </td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>  @if ($record->client_ref)
+                    {{ $record->client_ref->name}}
+                    @endif</td>
+                <td>  @if ($record->owner_ref)
+                    {{ $record->owner_ref->name}}
+                    @endif</td>
             </tr>
             <tr>
                 <td>Qualification</td>
                 <td>
-                    @if ($record->inspected_by>0)
+                    @if ($record->inspected_by_ref)
                     {{ $record->inspected_by_ref->level}}
                     @endif
                 </td>
                 <td>
-                    @if ($record->authorised_by>0)
+                    @if ($record->authorised_by_ref)
                     {{ $record->authorised_by_ref->level}}
                     @endif
                 </td>
                 <td></td>
                 <td></td>
                 <td></td>
+
             </tr>
             <tr>
                 <td>Date</td>
-                <td></td>
+            <td>{{$record->created_at}}</td>
                 <td></td>
                 <td></td>
                 <td></td>

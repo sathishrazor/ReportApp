@@ -62,7 +62,7 @@
         <tbody>
             <tr>
                 <td>
-                    MAGNETIC POLE TEST REPORT
+                   ULTRASONIC TEST REPORT
                 </td>
                 <td>
                     Date of Examination
@@ -74,7 +74,7 @@
                     Report No
                 </td>
                 <td>
-                    MPT_NO_{{$record->id}}
+                    UTC_NO_{{$record->id}}
                 </td>
             </tr>
         </tbody>
@@ -84,7 +84,7 @@
         <tr>
             <td>Owner Name</td>
             <td>
-            @if ($record->owner>0)
+            @if ($record->owner_ref)
                     {{ $record->owner_ref->name}}
                     @endif
             </td>
@@ -95,7 +95,7 @@
             <td>Client Name</td>
             <td>
 
-            @if ($record->client>0)
+            @if ($record->client_ref)
                     {{ $record->client_ref->name}}
                     @endif
             </td>
@@ -105,10 +105,9 @@
         <tr>
             <td>Project Name</td>
             <td>
-
-                @if ($record->project>0)
+                @if ($record->project_ref)
                     {{ $record->project_ref->name}}
-                    @endif
+                 @endif
             </td>
             <td>Project Address</td>
             <td>{{$record->project_address}}</td>
@@ -154,62 +153,45 @@
         </tr>
 
         <tr>
-            <td>Weld Process</td>
-            <td>{{$record->weld_process}}</td>
-            <td>Weld Reinforcement.</td>
-            <td>{{$record->weld_reinforcement}}</td>
+            <td>Drawing No.</td>
+            <td>{{$record->drawing_no}}</td>
+            <td>Line No.</td>
+            <td>{{$record->line_no}}</td>
         </tr>
     </table>
 
     <p><b>Method Details</b></p>
     <table>
         <tr>
-            <td>Type of Equipment</td>
-            <td>{{$record->type_of_equipment}}</td>
-            <td>Type of Current</td>
-            <td>{{$record->type_of_current}}</td>
-            <td>Chemical Manufacturer</td>
-            <td>{{$record->chemical_manufacture}}</td>
+            <td>UT Equipment</td>
+            <td>{{$record->ut_equipment}}</td>
+            <td>UT Equipment Sr.No.</td>
+            <td>{{$record->ut_equipment_sr_no}}</td>
+            <td>Probe Type</td>
+            <td>{{$record->probe_type}}</td>
 
         </tr>
 
         <tr>
-            <td>Cleaner Batch No.</td>
-            <td>{{$record->cleaner_batch_no}}</td>
-            <td>Contrast Batch No.</td>
-            <td>{{$record->contrast_batch_no}}</td>
-            <td>Black Ink Batch No.</td>
-            <td>{{$record->black_ink_batch_no}}</td>
+            <td>Probe Angle.</td>
+            <td>{{$record->probe_angle}}</td>
+            <td>Probe Frequency.</td>
+            <td>{{$record->probe_frequency}}</td>
+            <td>Probe Size.</td>
+            <td>{{$record->probe_size}}</td>
 
         </tr>
 
         <tr>
-            <td>Weight Light Level</td>
-            <td>{{$record->white_light_level}}</td>
-            <td>Black Light Level</td>
-            <td>{{$record->black_light_level}}</td>
-            <td>Light Meter Sr.No.</td>
-            <td>{{$record->light_meter_sr_no}}</td>
+            <td>Probe Sr. No</td>
+            <td>{{$record->probe_sr_no}}</td>
+            <td>Step Wedge Sr. No.</td>
+            <td>{{$record->step_wedge_sr_no}}</td>
+            <td>Couplant.</td>
+            <td>{{$record->couplant}}</td>
 
         </tr>
-        <tr>
-            <td>Type of Particle</td>
-            <td>{{$record->type_of_particle}}</td>
-            <td>Particle Medium</td>
-            <td>{{$record->particle_medium}}</td>
-            <td>Type of Magnetism</td>
-            <td>{{$record->type_of_magnetism}}</td>
 
-        </tr>
-        <tr>
-            <td>Configuration</td>
-            <td>{{$record->configuration}}</td>
-            <td>Pole Spacing</td>
-            <td>{{$record->pole_spacing}}</td>
-            <td>Lifting Capacity</td>
-            <td>{{$record->lifting_capacity}}</td>
-
-        </tr>
 
     </table>
 
@@ -219,12 +201,7 @@
         <thead>
             <tr>
                 <th rowspan="2">SNo.</th>
-                <th rowspan="2">Drawing No.</th>
-                <th rowspan="2">Line No.</th>
-                <th rowspan="2">Joint No.</th>
-                <th rowspan="2">Size</th>
-                <th rowspan="2">Length/Thick</th>
-                <th rowspan="2">Welder ID</th>
+                <th rowspan="2">Defect No.</th>
                 <th colspan="2">Interpretation</th>
                 <th rowspan="2">Result</th>
             </tr>
@@ -238,103 +215,16 @@
             @foreach ($record->interpretations as $item)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$item->drawing_no}}</td>
-                <td>{{$item->joint_no}}</td>
-                <td>{{$item->line_no}}</td>
-                <td>{{$item->size}}</td>
-                <td>{{$item->length_thick}}</td>
-                <td>{{$item->weld}}</td>
+                <td>{{$item->defect_no}}</td>
                 <td>{{$item->interpret_dis}}</td>
                 <td>{{$item->interpret_size}}</td>
                 <td>{{$item->result}}</td>
             </tr>
             @endforeach
 
-            <tr>
-                <td class="txt-right" colspan="9">
-                    Total Joint
-                </td>
-                <td>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td class="txt-right" colspan="9">
-                    Total Diameter(in)
-                </td>
-                <td>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td>Remarks</td>
-                <td colspan="9"></td>
-            </tr>
         </tbody>
     </table>
 
-
-    <p><b>Legend:</b></p>
-    <table class="appendix-table">
-        <tr>
-            <td>POR</td>
-            <TD>Porosity</TD>
-            <td>IC</td>
-            <td>Internal Concavity</td>
-            <td>CS</td>
-            <td>Carbon Steel</td>
-        </tr>
-        <tr>
-            <td>CP</td>
-            <TD>Cluster Porosity</TD>
-            <td>EC</td>
-            <td>External Concavity</td>
-            <td>SS</td>
-            <td>Stainless Steel</td>
-        </tr>
-        <tr>
-            <td>SI</td>
-            <TD>Slag Inclusion</TD>
-            <td>EP</td>
-            <td>Excess Penetration</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>TI</td>
-            <TD>Tungsten Inclusion</TD>
-            <td>LOP</td>
-            <td>Lack of Peneration</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>CR</td>
-            <TD>Crack</TD>
-            <td>LOF</td>
-            <td>Lack of Fusion</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>IU</td>
-            <TD>Internal Under Cut</TD>
-            <td>BT</td>
-            <td>Burn Through</td>
-            <td>NAD</td>
-            <td>No Apparent Discontinuity</td>
-        </tr>
-        <tr>
-            <td>EU</td>
-            <TD>External Under Cut</TD>
-            <td>W/H</td>
-            <td>Warm Hole</td>
-            <td>Con</td>
-            <td>Concavity</td>
-        </tr>
-    </table>
 
     <p><b>Authority</b></p>
     <table>
@@ -349,8 +239,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="min-height: 100px">
-                <td>Signature</td>
+            <tr>
+                <td style="padding:30px">Signature</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -361,40 +251,45 @@
                 <td>Name</td>
                 <td>
 
-                    @if ($record->inspected_by>0)
+                    @if ($record->inspected_by_ref)
                     {{ $record->inspected_by_ref->name}}
                     @endif
                 </td>
                 <td>
 
-                    @if ($record->authorised_by>0)
+                    @if ($record->authorised_by_ref)
                     {{ $record->authorised_by_ref->name}}
                     @endif
 
                 </td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>  @if ($record->client_ref)
+                    {{ $record->client_ref->name}}
+                    @endif</td>
+                <td>  @if ($record->owner_ref)
+                    {{ $record->owner_ref->name}}
+                    @endif</td>
             </tr>
             <tr>
                 <td>Qualification</td>
                 <td>
-                    @if ($record->inspected_by>0)
+                    @if ($record->inspected_by_ref)
                     {{ $record->inspected_by_ref->level}}
                     @endif
                 </td>
                 <td>
-                    @if ($record->authorised_by>0)
+                    @if ($record->authorised_by_ref)
                     {{ $record->authorised_by_ref->level}}
                     @endif
                 </td>
                 <td></td>
                 <td></td>
                 <td></td>
+
             </tr>
             <tr>
                 <td>Date</td>
-                <td></td>
+            <td>{{$record->created_at}}</td>
                 <td></td>
                 <td></td>
                 <td></td>

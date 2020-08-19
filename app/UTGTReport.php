@@ -30,8 +30,8 @@ class UTGTReport extends Model
        "grade",
        "surface_condition",
        "surface_temperature",
-       "weld_process",
-       "weld_preparation",
+       "drawing_no",
+       "line_no",
 
         //method details
        "ut_equipment",
@@ -92,7 +92,7 @@ public function authorised_by_ref()
 
 public function interpretations()
 {
- return $this->HasMany(interpretation::class);
+ return $this->HasMany(utgt_interpretation::class);
 }
 
 

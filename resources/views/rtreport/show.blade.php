@@ -83,19 +83,33 @@
     <table>
         <tr>
             <td>Owner Name</td>
-            <td> {{$record->owner_ref->name}}</td>
+            <td>
+                @if($record->owner_ref)
+                {{$record->owner_ref->name}}
+                @endif
+            </td>
             <td>Owner Address</td>
-            <td>{{$record->owner_address}}</td>
+            <td>
+                {{$record->owner_address}}
+            </td>
         </tr>
         <tr>
             <td>Client Name</td>
-            <td>{{$record->client_ref->name}}</td>
+            <td>
+            @if ($record->client_ref)
+               {{$record->client_ref->name}}
+            @endif
+            </td>
             <td>Client Address</td>
             <td>{{$record->client_address}}</td>
         </tr>
         <tr>
             <td>Project Name</td>
-            <td>{{$record->project_ref->name}}</td>
+            <td>
+                @if($record->project_ref)
+                {{$record->project_ref->name}}
+                @endif
+            </td>
             <td>Project Address</td>
             <td>{{$record->project_address}}</td>
         </tr>
@@ -192,9 +206,18 @@
             <td>Welder ID</td>
             <td>{{$record->welder_id}}</td>
             <td>Technician 1</td>
-            <td>{{$record->technician_1_ref->name}}</td>
+            <td>
+                @if ($record->technician_1_ref)
+                {{$record->technician_1_ref}}
+                 @endif
+
+            </td>
             <td>Technician 2</td>
-            <td>{{$record->technician_2_ref->name}}</td>
+            <td>
+                @if ($record->technician_2_ref)
+                {{$record->technician_2_ref}}
+                 @endif
+            </td>
         </tr>
 
     </table>
@@ -349,7 +372,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="min-height: 100px">
+            <tr style="padding:30px">
                 <td>Signature</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -361,13 +384,13 @@
                 <td>Name</td>
                 <td>
 
-                    @if ($record->inspected_by>0)
+                    @if ($record->inspected_by_ref)
                     {{ $record->inspected_by_ref->name}}
                         @endif
                 </td>
                 <td>
 
-                @if ($record->authorised_by>0)
+                @if ($record->authorised_by_ref)
                     {{ $record->authorised_by_ref->name}}
                         @endif
 
@@ -379,12 +402,12 @@
             <tr>
                 <td>Qualification</td>
                 <td>
-                    @if ($record->inspected_by>0)
+                    @if ($record->inspected_by_ref)
                     {{ $record->inspected_by_ref->level}}
                     @endif
                 </td>
                 <td>
-                    @if ($record->authorised_by>0)
+                    @if ($record->authorised_by_ref)
                     {{ $record->authorised_by_ref->level}}
                     @endif
                 </td>

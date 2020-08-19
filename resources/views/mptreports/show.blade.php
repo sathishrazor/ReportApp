@@ -117,7 +117,7 @@
             <td>Requested By</td>
             <td>{{$record->requested_by}}</td>
             <td>Request No</td>
-            <td>{{$record->requested_no}}</td>
+            <td>{{$record->request_no}}</td>
         </tr>
         <tr>
             <td>PO. No.</td>
@@ -349,7 +349,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="min-height: 100px">
+            <tr style="padding:30px">
                 <td>Signature</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

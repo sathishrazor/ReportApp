@@ -75,8 +75,6 @@ $(".select").each(function(index,el){
         }
     })
 })
-
-
 })
 
 class __HtmlSelect {
@@ -84,7 +82,8 @@ class __HtmlSelect {
 
             this.listeners =  [];
             this._data = data.map(function (c) {
-               c.name= c.name == undefined ? "": c.name;
+                c.name= c.name == undefined ||c.name == null ? "": c.name;
+                c.text= c.text == undefined ||c.text == null ? "": c.text;
                 return {
                     value: c.value,
                     text: c.text + "::"+c.name

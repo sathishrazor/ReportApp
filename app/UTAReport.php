@@ -94,7 +94,7 @@ class UTAReport extends Model
 
     public function interpretations()
     {
-        return $this->HasMany(interpretation::class);
+        return $this->HasMany(uta_interpretation::class);
     }
 
     public function calibrations()

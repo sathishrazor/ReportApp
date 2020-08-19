@@ -190,15 +190,15 @@
                 <div class="form-row">
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>UTG Equipment</label>
-                        <input  name="utg_equipment" value="{{old('utg_equipment')}}"  type="text"
+                        <input  name="ut_equipment" value="{{old('utg_equipment')}}"  type="text"
                         class="form-control form-control-sm autocomplete" dropdown='utg_equipment'>
-                        @error('utg_equipment')
+                        @error('ut_equipment')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>UT Equipment Sr.No. </label>
+                        <label>UTG Equipment Sr.No. </label>
                         <input name="ut_equipment_sr_no"  value="{{old('ut_equipment_sr_no')}}"
                          type="text" class="form-control form-control-sm autocomplete" dropdown="ut_equipment_sr_no">
                         @error('ut_equipment_sr_no')
@@ -226,7 +226,7 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Probe Frequency</label>
-                        <input name="probe_frequency  value="{{old('probe_frequency')}}"
+                        <input name="probe_frequency" value="{{old('probe_frequency')}}"
                           type="text" class="form-control form-control-sm autocomplete" dropdown="probe_frequency">
                         @error('probe_frequency')
                         <small class="form-text text-danger">{{ $message }}</small>

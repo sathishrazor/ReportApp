@@ -52,6 +52,27 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
+        .verticalTableHeader {
+    text-align:center;
+
+    padding: 0;
+    white-space:nowrap;
+    transform: rotate(90deg);
+
+}
+.verticalTableHeader p {
+    margin:0 -100% ;
+    display:inline-block;
+}
+.verticalTableHeader p:before{
+    content:'';
+    width:0;
+    padding-top:110%;/* takes width as reference, + 10% for faking some extra padding */
+    display:inline-block;
+    vertical-align:middle;
+}
+
     </style>
 </head>
 
@@ -62,7 +83,7 @@
         <tbody>
             <tr>
                 <td>
-                    MAGNETIC POLE TEST REPORT
+                    ULTRASONIC TEST REPORT
                 </td>
                 <td>
                     Date of Examination
@@ -115,9 +136,9 @@
         </tr>
         <tr>
             <td>Requested By</td>
-            <td>{{$record->requested_by}}</td>
+            <td>{{$record->request_by}}</td>
             <td>Request No</td>
-            <td>{{$record->requested_no}}</td>
+            <td>{{$record->request_no}}</td>
         </tr>
         <tr>
             <td>PO. No.</td>
@@ -156,75 +177,114 @@
         <tr>
             <td>Weld Process</td>
             <td>{{$record->weld_process}}</td>
-            <td>Weld Reinforcement.</td>
-            <td>{{$record->weld_reinforcement}}</td>
+            <td>Weld Preparation.</td>
+            <td>{{$record->weld_preparation}}</td>
         </tr>
     </table>
 
     <p><b>Method Details</b></p>
     <table>
         <tr>
-            <td>Type of Equipment</td>
-            <td>{{$record->type_of_equipment}}</td>
-            <td>Type of Current</td>
-            <td>{{$record->type_of_current}}</td>
-            <td>Chemical Manufacturer</td>
-            <td>{{$record->chemical_manufacture}}</td>
-
+            <td>UT Equipment</td>
+            <td>{{$record->ut_equipment}}</td>
+            <td>UT Equipment Sr.No.</td>
+            <td>{{$record->ut_equipment_sr_no}}</td>
+            <td>Type of Scan</td>
+            <td>{{$record->type_of_scan}}</td>
         </tr>
 
         <tr>
-            <td>Cleaner Batch No.</td>
-            <td>{{$record->cleaner_batch_no}}</td>
-            <td>Contrast Batch No.</td>
-            <td>{{$record->contrast_batch_no}}</td>
-            <td>Black Ink Batch No.</td>
-            <td>{{$record->black_ink_batch_no}}</td>
-
+            <td>Method of Test.</td>
+            <td>{{$record->method_of_test}}</td>
+            <td>Cable Type.</td>
+            <td>{{$record->cable_type}}</td>
+            <td>Cable Length.</td>
+            <td>{{$record->cable_length}}</td>
         </tr>
 
         <tr>
-            <td>Weight Light Level</td>
-            <td>{{$record->white_light_level}}</td>
-            <td>Black Light Level</td>
-            <td>{{$record->black_light_level}}</td>
-            <td>Light Meter Sr.No.</td>
-            <td>{{$record->light_meter_sr_no}}</td>
-
+            <td>V1 Block Sr.No.</td>
+            <td>{{$record->v1_block_sr_no}}</td>
+            <td>V2 Block Sr.No.</td>
+            <td>{{$record->v2_block_sr_no}}</td>
+            <td>Cal.Block Sr.No.</td>
+            <td>{{$record->cal_block_sr_no}}</td>
         </tr>
         <tr>
-            <td>Type of Particle</td>
-            <td>{{$record->type_of_particle}}</td>
-            <td>Particle Medium</td>
-            <td>{{$record->particle_medium}}</td>
-            <td>Type of Magnetism</td>
-            <td>{{$record->type_of_magnetism}}</td>
-
+            <td>Couplant</td>
+            <td>{{$record->couplant}}</td>
+            <td>Thickness</td>
+            <td>{{$record->thickness}}</td>
+            <td>Weld Joint No.</td>
+            <td>{{$record->weld_joint_no}}</td>
         </tr>
-        <tr>
-            <td>Configuration</td>
-            <td>{{$record->configuration}}</td>
-            <td>Pole Spacing</td>
-            <td>{{$record->pole_spacing}}</td>
-            <td>Lifting Capacity</td>
-            <td>{{$record->lifting_capacity}}</td>
-
-        </tr>
-
     </table>
-
+    <p><b>Calibration Data Details</b></p>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Probe <br>Sr.No</th>
+                <th rowspan="2">Size <br>(mm)</th>
+                <th rowspan="2">Frequency <br>(MHz)</th>
+                <th rowspan="2">Angle <br>(deg)</th>
+                <th rowspan="2">Type</th>
+                <th rowspan="2">Range <br>(mm)</th>
+                <th rowspan="2">Sensitivity <br>Level(dB)</th>
+                <th rowspan="2">Scanning <br>Level(dB)</th>
+                <th  colspan="3">1st Hole</th>
+                <th   colspan="3">2nd Hole</th>
+                <th   colspan="3">3rd Hole</th>
+            </tr>
+            <tr>
+                <th  class="verticalTableHeader">Depth <br>(mm)</th>
+                <th  class="verticalTableHeader">Beam <br>path(mm)</th>
+                <th  class="verticalTableHeader">Amplitude<br>(mm)</th>
+                <th   class="verticalTableHeader">Depth<br>(mm)</th>
+                <th  class="verticalTableHeader">Beam <br>path(mm)</th>
+                <th  class="verticalTableHeader">Amplitude<br>(mm)</th>
+                <th class="verticalTableHeader">Depth<br>(mm)</th>
+                <th  class="verticalTableHeader">Beam <br>path(mm)</th>
+                <th  class="verticalTableHeader"><p>Amplitude(mm)</p></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($record->calibrations as $row)
+                <tr>
+                <td width="7%">{{$loop->iteration}}</td>
+                <td width="7%">{{$row->probe_sr_no}}</td>
+                <td width="7%">{{$row->size}}</td>
+                <td width="7%">{{$row->frequency}}</td>
+                <td width="7%">{{$row->angle}}</td>
+                <td width="7%">{{$row->type}}</td>
+                <td width="7%">{{$row->sensistivity}}</td>
+                <td width="7%">{{$row->scanning}}</td>
+                <td>{{$row->hole_1_depth}}</td>
+                <td>{{$row->hole_1_beam}}</td>
+                <td>{{$row->hole_1_amplitude}}</td>
+                <td>{{$row->hole_2_depth}}</td>
+                <td>{{$row->hole_2_beam}}</td>
+                <td>{{$row->hole_2_amplitude}}</td>
+                <td>{{$row->hole_3_depth}}</td>
+                <td>{{$row->hole_3_beam}}</td>
+                <td>{{$row->hole_3_amplitude}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
     <p><b>Interpretation Details</b></p>
     <table>
         <thead>
             <tr>
                 <th rowspan="2">SNo.</th>
-                <th rowspan="2">Drawing No.</th>
-                <th rowspan="2">Line No.</th>
-                <th rowspan="2">Joint No.</th>
-                <th rowspan="2">Size</th>
-                <th rowspan="2">Length/Thick</th>
-                <th rowspan="2">Welder ID</th>
+                <th rowspan="2">Defect No.</th>
+                <th rowspan="2">From <br>Datum(mm).</th>
+                <th rowspan="2">Defect <br>Length (mm) </th>
+                <th rowspan="2">Beam Path (dB) </th>
+                <th rowspan="2">Skip Distance (mm)</th>
+                <th rowspan="2">Depth <br> (mm) </th>
+                <th rowspan="2">Angle (deg)</th>
+                <th rowspan="2">% DAC</th>
                 <th colspan="2">Interpretation</th>
                 <th rowspan="2">Result</th>
             </tr>
@@ -238,40 +298,19 @@
             @foreach ($record->interpretations as $item)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$item->drawing_no}}</td>
-                <td>{{$item->joint_no}}</td>
-                <td>{{$item->line_no}}</td>
-                <td>{{$item->size}}</td>
-                <td>{{$item->length_thick}}</td>
-                <td>{{$item->weld}}</td>
+                <td>{{$item->defect_no}}</td>
+                <td>{{$item->from_datum}}</td>
+                <td>{{$item->defect_length}}</td>
+                <td>{{$item->beam_path}}</td>
+                <td>{{$item->skip_distance}}</td>
+                <td>{{$item->depth}}</td>
+                <td>{{$item->angle}}</td>
+                <td>{{$item->dac}}</td>
                 <td>{{$item->interpret_dis}}</td>
                 <td>{{$item->interpret_size}}</td>
                 <td>{{$item->result}}</td>
             </tr>
             @endforeach
-
-            <tr>
-                <td class="txt-right" colspan="9">
-                    Total Joint
-                </td>
-                <td>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td class="txt-right" colspan="9">
-                    Total Diameter(in)
-                </td>
-                <td>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td>Remarks</td>
-                <td colspan="9"></td>
-            </tr>
         </tbody>
     </table>
 
@@ -373,8 +412,12 @@
 
                 </td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>  @if ($record->client>0)
+                    {{ $record->client_ref->name}}
+                    @endif</td>
+                <td>  @if ($record->owner>0)
+                    {{ $record->owner_ref->name}}
+                    @endif</td>
             </tr>
             <tr>
                 <td>Qualification</td>
@@ -391,10 +434,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
+
             </tr>
             <tr>
                 <td>Date</td>
-                <td></td>
+            <td>{{$record->created_at}}</td>
                 <td></td>
                 <td></td>
                 <td></td>

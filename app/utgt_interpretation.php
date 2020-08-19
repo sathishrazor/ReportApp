@@ -24,6 +24,8 @@ class utgt_interpretation extends Model
         "minimum",
         "corr_allowence",
         "result",
+        "base_line_reading",
+        "length"
     ];
 
     public function UTGTReport()

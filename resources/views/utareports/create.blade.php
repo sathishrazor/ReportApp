@@ -433,18 +433,18 @@
 
                 <table sublist-attr="interpretations" class="table table-sm table-bordered">
                     <thead class="text-center">
-
                         <tr>
                             <th rowspan="2">SNo.</th>
-                            <th rowspan="2">Drawing No</th>
-                            <th rowspan="2">Line No.</th>
-                            <th rowspan="2">Joint No.</th>
-                            <th rowspan="2">Size</th>
-                            <th rowspan="2">Length/Thick</th>
-                            <th rowspan="2">Welder ID</th>
+                            <th rowspan="2">Defect No.</th>
+                            <th rowspan="2">From <br> Datum(mm).</th>
+                            <th rowspan="2">Defect <br>Length (mm) </th>
+                            <th rowspan="2">Beam Path (dB) </th>
+                            <th rowspan="2">Skip Distance (mm)</th>
+                            <th rowspan="2">Depth <br> (mm) </th>
+                            <th colspan="2">Angle (deg)</th>
+                            <th rowspan="2">% DAC</th>
                             <th colspan="2">Interpretation</th>
                             <th rowspan="2">Result</th>
-                            <th rowspan="2">Action</th>
                         </tr>
                         <tr>
                             <th>Discontinuity</th>
@@ -457,15 +457,17 @@
                     <tfoot>
                         <tr>
                             <td>&nbsp;</td>
-                            <td><input name-attr="drawing_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="line_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="joint_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="size" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="length_thick" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="weld" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="interpret_dis" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="interpret_size" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="result" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="defect_no"     class="form-control form-control-sm"/></td>
+                            <td><input name-attr="from_datum"    class="form-control form-control-sm"/></td>
+                            <td><input name-attr="defect_length" class="form-control form-control-sm"/></td>
+                            <td><input name-attr="beam_path"     class="form-control form-control-sm"/></td>
+                            <td><input name-attr="skip_distance" class="form-control form-control-sm"/></td>
+                            <td><input name-attr="depth"         class="form-control form-control-sm"/></td>
+                            <td><input name-attr="angle"         class="form-control form-control-sm"/></td>
+                            <td><input name-attr="dac"           class="form-control form-control-sm"/></td>
+                            <td><input name-attr="interpret_dis" class="form-control form-control-sm"/></td>
+                            <td><input name-attr="interpret_size"class="form-control form-control-sm"/></td>
+                            <td><input name-attr="result"        class="form-control form-control-sm"/></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
