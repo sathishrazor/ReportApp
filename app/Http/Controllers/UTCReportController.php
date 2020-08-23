@@ -8,6 +8,10 @@ use Yajra\DataTables\DataTables;
 
 class UTCReportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return View("utcreports.index");

@@ -9,6 +9,11 @@ use Yajra\DataTables\DataTables;
 class UTAReportController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return View("utareports.index");

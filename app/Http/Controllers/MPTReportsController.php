@@ -8,6 +8,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class MPTReportsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return View("mptreports.index");

@@ -8,6 +8,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ProjectsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return View("projects.index");

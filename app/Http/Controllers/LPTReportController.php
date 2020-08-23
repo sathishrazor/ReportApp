@@ -8,6 +8,11 @@ use Yajra\DataTables\DataTables;
 
 class LPTReportController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return View("lptreports.index");
