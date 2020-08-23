@@ -116,7 +116,7 @@
             <td>Requested By</td>
             <td>{{$record->requested_by}}</td>
             <td>Request No</td>
-            <td>{{$record->requested_no}}</td>
+            <td>{{$record->request_no}}</td>
         </tr>
         <tr>
             <td>PO. No.</td>
@@ -186,15 +186,11 @@
             <td>Probe Sr. No</td>
             <td>{{$record->probe_sr_no}}</td>
             <td>Step Wedge Sr. No.</td>
-            <td>{{$record->step_wedge_sr_no}}</td>
+            <td>{{$record->stop_wedge_sr_no}}</td>
             <td>Couplant.</td>
             <td>{{$record->couplant}}</td>
-
         </tr>
-
-
     </table>
-
 
     <p><b>Interpretation Details</b></p>
     <table>

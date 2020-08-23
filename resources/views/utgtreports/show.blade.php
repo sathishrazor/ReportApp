@@ -190,10 +190,7 @@
             <td>{{$record->stop_wedge_sr_no}}</td>
             <td>Couplant.</td>
             <td>{{$record->couplant}}</td>
-
         </tr>
-
-
     </table>
 
 
@@ -201,9 +198,7 @@
     <p><b>Interpretation Details</b></p>
     <table>
         <thead class="text-center">
-
             <tr>
-
                 <th rowspan="2">Equipment</th>
                 <th rowspan="2">Location</th>
                 <th rowspan="2">Base Line.<br/>Reading(mm)</th>
@@ -226,7 +221,6 @@
             </tr>
         </thead>
         <tbody>
-
             @foreach ($record->interpretations as $item)
             <tr>
                 <td>{{$item->equipment}}</td>

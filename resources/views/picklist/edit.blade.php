@@ -42,6 +42,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
+                            <th>Sno</th>
                             <th>Value</th>
                             <th>Text</th>
                             <th>Actions</th>
@@ -50,11 +51,18 @@
                         <tbody>
                             @foreach ($record->options as $option)
                                 <tr>
+                                    <td>
+                                        <input type="text" class="d-none"  value="{{$option->id}}">
+                                        {{$loop->iteration}}
+                                    </td>
+
                                     <td><input type="text" name="Options[{{$loop->index}}][value]" class="form-control form-control-sm" value="{{$option->value}}"></td>
                                     <td><input type="text"  name="Options[{{$loop->index}}][text]" class="form-control form-control-sm" value="{{$option->text}}"></td>
                                     <td>
-                                        <button class="btn editbtn btn-sm btn-warning">Edit</button>
-                                        <button class="btn delbtn btn-sm btn-danger">Delete</button>
+                                        <div class="btn-group">
+                                            <button class="btn editbtn btn-sm btn-warning">Edit</button>
+                                            <button class="btn delbtn btn-sm btn-danger">Delete</button>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -62,6 +70,7 @@
 
                         <tfoot>
                         <tr>
+                            <td></td>
                             <td><input type="text"  class="value form-control form-control-sm"></td>
                             <td><input type="text" class="text form-control form-control-sm"></td>
                             <td><button class="btn btn-sm btn-success addbtn">Add</button></td>
@@ -141,6 +150,10 @@
 
         var tplrow = `
             <tr>
+                <td>
+                   <input type="text" name="Options[{index}][id]" class="d-none">
+
+                </td>
                 <td>
                     <input type="text" name="Options[{index}][value]" readonly="readonly" class="form-control form-control-sm" value="{value}" />
                 </td>

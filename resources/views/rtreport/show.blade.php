@@ -208,14 +208,14 @@
             <td>Technician 1</td>
             <td>
                 @if ($record->technician_1_ref)
-                {{$record->technician_1_ref}}
+                {{$record->technician_1_ref->name}}
                  @endif
 
             </td>
             <td>Technician 2</td>
             <td>
                 @if ($record->technician_2_ref)
-                {{$record->technician_2_ref}}
+                {{$record->technician_2_ref->name}}
                  @endif
             </td>
         </tr>

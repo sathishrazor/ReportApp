@@ -189,10 +189,10 @@
             <div class="card-body">
                 <div class="form-row">
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Type of Equipment</label>
-                        <input  name="type_of_equipment" value="{{old('type_of_equipment')}}"  type="text"
-                        class="form-control form-control-sm autocomplete" dropdown='type_of_equipment'>
-                        @error('type_of_equipment')
+                        <label>UT Equipment</label>
+                        <input  name="ut_equipment" value="{{old('ut_equipment')}}"  type="text"
+                        class="form-control form-control-sm autocomplete" dropdown='ut_equipment'>
+                        @error('ut_equipment')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -226,7 +226,7 @@
 
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
                         <label>Probe Frequency</label>
-                        <input name="probe_frequency  value="{{old('probe_frequency')}}"
+                        <input name="probe_frequency"  value="{{old('probe_frequency')}}"
                           type="text" class="form-control form-control-sm autocomplete" dropdown="probe_frequency">
                         @error('probe_frequency')
                         <small class="form-text text-danger">{{ $message }}</small>
@@ -246,7 +246,7 @@
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                        <label>Stop Wedge Sr.No.</label>
+                        <label>Step Wedge Sr.No.</label>
                         <input name="stop_wedge_sr_no"   value="{{old('stop_wedge_sr_no')}}"   type="text" class="form-control form-control-sm" dropdown="stop_wedge_sr_no">
                         <small  class="form-text text-muted">intellisense available.</small>
                     </div>
@@ -287,7 +287,7 @@
                         <tr>
                             <td></td>
                             <td><input name-attr="defect_no" class="form-control form-control-sm" /></td>
-                            <td><input name-attr="interpret_size" class="form-control form-control-sm" /></td>
+                            <td><input name-attr="interpret_dis" class="form-control form-control-sm" /></td>
                             <td><input name-attr="interpret_size" class="form-control form-control-sm" /></td>
                             <td><input name-attr="result" class="form-control form-control-sm" /></td>
                            <td>&nbsp;</td>

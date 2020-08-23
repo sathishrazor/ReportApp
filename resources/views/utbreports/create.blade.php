@@ -19,17 +19,16 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Owner Name</label>
-                        <select name="owner" class="form-control form-control-sm select" record="owners"></select>
+                        <select  name="owner" class="form-control form-control-sm select address" record="owners"></select>
                         @error('owner')
-                        <small class="form-text text-muted">{{ $message }}</small>
+                            <small class="form-text text-muted">{{ $message }}</small>
                         @enderror
                         {{-- <small class="form-text text-muted">select owner</small> --}}
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Owner Address</label>
-                        <input name="owner_address" type="text" value="{{old('owner_address')}}"
-                            class="form-control form-control-sm autocomplete" dropdown="addresses">
+                     <textarea name="owner_address" rows="5"  value="{{old('owner_address')}}" class="form-control form-control-sm"></textarea>
                         @error('owner_address')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -37,7 +36,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Client Name</label>
-                        <select name="client" class="form-control form-control-sm select" record="clients"></select>
+                        <select name="client"  class="form-control form-control-sm select address" record="clients"></select>
                         @error('client')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -45,8 +44,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Client Address</label>
-                        <select name="client_address" value="{{old('client_address')}}" type="text"
-                            class="form-control form-control-sm select" dropdown="5"></select>
+                        <textarea name="client_address"  rows="5"    value="{{old('client_address')}}" class="form-control form-control-sm"></textarea>
                         @error('client_address')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -55,7 +53,7 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Project Name</label>
-                        <select name="project" class="form-control form-control-sm select" record="projects"></select>
+                        <select name="project"  class="form-control form-control-sm select address"  record="projects"></select>
                         @error('project')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -63,32 +61,28 @@
 
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Project Address</label>
-                        <input name="project_address" value="{{old('project_address')}}" type="text"
-                            class="form-control form-control-sm">
+                        <textarea name="project_address"  rows="5"    value="{{old('project_address')}}" class="form-control form-control-sm"></textarea>
                         @error('project_address')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Requested By</label>
-                        <select name="requested_by" class="form-control form-control-sm select"
-                            record="employees"></select>
+                        <select name="requested_by"  class="form-control form-control-sm select" record="employees"></select>
                         @error('requested_by')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Request No</label>
-                        <input name="request_no" value="{{old('request_no')}}" type="text"
-                            class="form-control form-control-sm">
+                        <input name="request_no" value="{{old('request_no')}}"  type="text" class="form-control form-control-sm">
                         @error('request_no')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <label>P.O No.</label>
-                        <input name="po_tranno" value="{{old('po_tranno')}}" type="text"
-                            class="form-control form-control-sm">
+                        <input name="po_tranno"  value="{{old('po_tranno')}}" type="text" class="form-control form-control-sm">
                         @error('po_tranno')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
@@ -96,9 +90,8 @@
                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3  inner-addon right-addon">
                         <label>W.O. No./Job No.</label>
                         <i class="fa fa-plus"></i>
-                        <input name="wo_tranno" value="{{old('wo_tranno')}}" type="text"
-                            class="form-control form-control-sm autocomplete" dropdown="3">
-                        <small class="form-text text-muted">intellisense available.</small>
+                        <input name="wo_tranno" value="{{old('wo_tranno')}}" type="text" class="form-control form-control-sm autocomplete" dropdown="3">
+                        <small  class="form-text text-muted">intellisense available.</small>
                     </div>
                 </div>
             </div>

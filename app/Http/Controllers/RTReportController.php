@@ -73,11 +73,32 @@ class RTReportController extends Controller
 
     public function edit($id)
     {
-        return View("rtreport.edit");
+        $record = RTReport::findOrFail($id);
+        return  view('rtreport.edit',["record"=>$record]);
     }
 
-    public function update($id)
+    public function update($id,Request $request)
     {
+        $rec = RTReport::findOrFail($id);
+
+        $this->validate($request, [
+            'owner' => 'required',
+            'client' => 'required',
+            'project' => 'required',
+            'requested_by' => 'required',
+            'request_no' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        $rec->update($input);
+        $rec->interpretations()->delete();
+        $rec->save();
+        foreach( $request->interpretations as $row)
+        {
+            $rec->interpretations()->create($row);
+        }
+        $rec->push();
         return View("rtreport.index");
     }
     public function destroy($id)

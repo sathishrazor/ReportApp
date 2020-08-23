@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Owner;
+use App\Project;
+use App\Employee;
 use App\MPTReport;
 use App\Option;
 use Yajra\Datatables\Datatables;
@@ -204,8 +207,15 @@ class PickListController extends Controller
 
         $input = $request->all();
 
-        $task->fill($input)->push();
-
+        $task->update($input);
+        $task->options()->delete();
+        $task->save();
+        foreach( $request->Options as $option)
+        {
+            //$matchThese = ['id'=>$option["id"]];
+            $task->options()->create($option);
+        }
+        $task->push();
         return  redirect()->action('PickListController@index');
     }
 
@@ -230,5 +240,40 @@ class PickListController extends Controller
             auth()->user()->RecentHistory()->create($req->all());
 
         }
+    }
+
+
+    public function getaddress(Request $req)
+    {
+        $module = $req->module;
+        $rec = $req->record;
+        $result = [];
+        switch($module)
+        {
+            case "owners":
+                $result = Owner::where([['id', '=', $rec]])->first();
+                if($result)
+                 return  response()->json($result->addressbook);
+            break;
+
+            case "clients":
+                $result = Client::where([['id', '=', $rec]])->first();
+                if($result)
+                 return  response()->json($result->addressbook);
+            break;
+
+            case "employees":
+                $result = Employee::where([['id', '=', $rec]])->first();
+                if($result)
+                 return  response()->json($result->addressbook);
+            break;
+
+            case "projects":
+                $result = Employee::where([['id', '=', $rec]])->first();
+                if($result)
+                 return  response()->json($result->addressbook);
+            break;
+        }
+        return response()->json([]);
     }
 }

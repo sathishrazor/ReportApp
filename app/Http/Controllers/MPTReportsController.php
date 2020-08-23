@@ -21,7 +21,7 @@ class MPTReportsController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="/rtreport/'.$row->id.'/edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
+                    $btn = '<a href="/mptreport/'.$row->id.'/edit" class="edit btn btn-primary btn-sm editItem">Edit</a>';
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  class="btn btn-danger btn-sm deleteItem">Delete</a>';
 
                     return $btn;
@@ -76,17 +76,55 @@ class MPTReportsController extends Controller
     public function show($id)
     {
         $record = MPTReport::findOrFail($id);
-
         return View("mptreports.show",["record"=>$record]);
     }
 
     public function edit($id)
     {
-        return View("mptreports.edit");
+        $record = MPTReport::findOrFail($id);
+        return  view('mptreports.edit',["record"=>$record]);
     }
 
-    public function update($id)
+    public function update($id,Request $request)
     {
+        $rec = MPTReport::findOrFail($id);
+
+        $this->validate($request, [
+            'owner' => 'required',
+            'client' => 'required',
+            'project' => 'required',
+            'requested_by' => 'required',
+            'request_no' => 'required',
+        ]);
+        $input = $request->all();
+        $rec->update($input);
+
+        if($request->hasFile('photo_1'))
+        {
+           // dd($request);
+            $photo_1 =  request("photo_1")->store("uploads","public");
+            $rec->photo_1 = $photo_1;
+        }
+        if($request->hasFile('photo_2'))
+        {
+
+            $photo_2 =  request("photo_2")->store("uploads","public");
+            $rec->photo_2 = $photo_2;
+           // dd($rec->photo_2);
+        }
+        if($request->hasFile('drawing'))
+        {
+            $drawing =  request("drawing")->store("uploads","public");
+            $rec->drawing = $drawing;
+        }
+
+        $rec->save();
+        $rec->interpretations()->delete();
+        foreach( $request->interpretations as $row)
+        {
+            $rec->interpretations()->create($row);
+        }
+        $rec->push();
         return View("mptreports.index");
     }
     public function destroy($id)

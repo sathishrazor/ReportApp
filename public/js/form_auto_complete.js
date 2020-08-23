@@ -108,7 +108,8 @@ $(function () {
     source: function source(request, response) {
       var _this = this;
 
-      var dropdown_id = _this.element.attr("dropdown"); // Fetch data
+      var dropdown_id = _this.element.prev().text(); // attr("dropdown")
+      // Fetch data
 
 
       $.ajax({
@@ -144,6 +145,12 @@ $(function () {
   $(".select").each(function (index, el) {
     var select = $(el);
     var drop_down = select.attr("dropdown");
+    var selected_value = select.attr("value");
+
+    if (!selected_value) {
+      selected_value = -1;
+    }
+
     var record = select.attr("record");
     var url = $("#rooturl").val();
 
@@ -162,7 +169,7 @@ $(function () {
           console.log("dropdown_changed", newval);
         });
         console.log(DROP_DOWN_PRX);
-        htmlselect.render(select, "value", -1);
+        htmlselect.render(select, "value", selected_value);
       } else {
         var label = select.prev().text();
         var name = select.attr("name");
@@ -171,6 +178,35 @@ $(function () {
         var tpl = "<label>".concat(label, "</label><input id=\"").concat(id, "\" class=\"").concat(css, "\" name=\"").concat(name, "\" type=\"text\" />");
         select.parent().html(tpl);
       }
+    });
+  });
+  $(document).on('change', '.address', function (e) {
+    console.log(e);
+    var sel = $(this);
+    var module = sel.attr("record");
+    var record = sel.val();
+    console.log({
+      module: module,
+      record: record
+    });
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var req = $.post("/app/address", {
+      module: module,
+      record: record,
+      _token: CSRF_TOKEN
+    });
+    req.then(function (res) {
+      console.log(res);
+      var addr_select = res.map(function (c) {
+        var temp = "".concat(c.attention, ",\n").concat(c.addr1, " ").concat(c.addr2, ",\n").concat(c.city, ",\n").concat(c.state, " ").concat(c.country, ",\n").concat(c.zip);
+        return temp;
+      });
+      sel.parent().next().find("textarea").val("");
+      sel.parent().next().find("textarea").autocomplete({
+        source: addr_select,
+        minLength: 0
+      }); // var htmlselect = new __HtmlSelect(addr_select);
+      // htmlselect.render(sel.parent().next().find("select"),"value",-1);
     });
   });
 });
@@ -193,10 +229,16 @@ var __HtmlSelect = /*#__PURE__*/function () {
   _createClass(__HtmlSelect, [{
     key: "render",
     value: function render(el, name, option) {
-      var tpl = "";
+      var tpl = "<option></option>";
       tpl += this._data.map(function (c, i) {
-        if (i == option) {
-          return "<option selected value=" + c.value + ">" + c.text + "</option>";
+        if (option.constructor.name == "Number") {
+          if (i == option) {
+            return "<option selected value=" + c.value + ">" + c.text + "</option>";
+          }
+        } else {
+          if (c.value == option) {
+            return "<option selected value=" + c.value + ">" + c.text + "</option>";
+          }
         }
 
         return "<option value=" + c.value + ">" + c.text + "</option>";

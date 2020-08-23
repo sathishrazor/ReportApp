@@ -78,6 +78,7 @@ Route::get('picklist/get/{id}', "PickListController@get");
 Route::post('picklist/search',"PickListController@search")->name("PickList.search");
 Route::post('userdata/history',"PickListController@record_history")->name("PickList.record_history");
 Route::post('app/search',"PickListController@search_global")->name("PickList.search_global");
+Route::post('app/address',"PickListController@getaddress")->name("PickList.getaddress");
 
 Route::get('form/owners',"OwnersController@get")->name("owners.get");
 Route::get('form/employees',"EmployeesController@get")->name("employees.get");
